@@ -1,0 +1,86 @@
+title = "My Example Site"
+
+highlight_theme = "gruvbox-dark"
+
+# clean blog requiremenmts
+theme = "even"
+
+taxonomies = [
+    {name = "categories", rss = true, paginate_by=5},
+    {name = "tags", rss = true, paginate_by=5},
+]
+
+#taxonomies = [
+#    # You can enable/disable RSS
+#    {name = "categories", rss = true},
+#    {name = "tags", rss = true},
+#]
+
+# The URL the site will be built for
+base_url = "/"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+[extra]
+subtitle = "Example subtitle"
+
+author = "Morten Maxild"
+author_bio = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, pariatur!"
+twitter = "maxfire"
+github = "maxild"
+instagram = false
+enable_mathjax = false
+
+#TODO: $BASE_URL is replaced by congig.base_url in the Even themes template, and
+# because out base_url ends in / we we
+even_menu = [
+    {url = "$BASE_URL", name = "Home"},
+    {url = "$BASE_URLcategories", name = "Categories"},
+    {url = "$BASE_URLtags", name = "Tags"},
+    {url = "$BASE_URLabout", name = "About"},
+]
+even_title = "My Title (to be changed)"
+
+hyde_sticky = true
+hyde_reverse = false
+#hyde_theme = "theme-base-08"
+hyde_links = [
+    {url = "https://google.com", name = "Google.com"},
+    {url = "https://google.fr", name = "Google.fr"},
+]
+
+#profile = 'profile.svg'
+#description = "Simple blog theme focused on writing, inspired by svbtle"
+# website, should not be preceded with `http://`
+#website = "code.liquidthink.net"
+#github = "maxild" # case does not matter
+#twitter = "maxild"
+email = "mmaxild@google.com"
+#instagram = "${your_insta}"
+#keybase = "${your_keybase}"
+#linkedin = "${your_linkedin}"
+#reddit = "${your_reddit}"
+#youtube = "${your_youtube_channel_id}"
+
+butler_nav_bar = [
+    {url = "$BASE_URL/blog", name = "Blog"},
+]
+
+[extra.author]
+name = "The Wall"
+twitter.username = "username"
+twitter.link = "https://twitter.com/username"
+
+[extra.disqus]
+shortname = "shortname"
+
+[extra.google_analytics]
+id = "UA-4XXXXXXX-X"

@@ -1,0 +1,30 @@
+[submodule "themes/zola-clean-blog"]
+	path = themes/zola-clean-blog
+	url = https://github.com/dave-tucker/zola-clean-blog.git
+[submodule "themes/after-dark"]
+	path = themes/after-dark
+	url = https://github.com/getzola/after-dark.git
+[submodule "themes/ergo"]
+	path = themes/ergo
+	url = https://github.com/insipx/Ergo.git
+[submodule "themes/butler"]
+	path = themes/butler
+	url = https://github.com/shalzz/butler.git
+[submodule "themes/hikari"]
+	path = themes/hikari
+	url = https://github.com/waynee95/zola-theme-hikari.git
+[submodule "themes/zola-pickles"]
+	path = themes/zola-pickles
+	url = https://github.com/lukehsiao/zola-pickles.git
+[submodule "themes/slim"]
+	path = themes/slim
+	url = https://github.com/jameshclrk/zola-slim.git
+[submodule "themes/book"]
+	path = themes/book
+	url = https://github.com/getzola/book.git
+[submodule "themes/hyde"]
+	path = themes/hyde
+	url = https://github.com/getzola/hyde.git
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/getzola/even.git
