@@ -93,6 +93,18 @@ avoid using.
 
 We can use the IdeaVim plugin again writing `:action
 ShowIntentionActions<CR>` in the IDE. This way we can ensure that we are
-taliking about the correct command in the IDE.
+talking about the correct command in the IDE.
 
+The goal is 2-fold:
 
+* Define VIM keybindings
+* Learn (redefine) IDE keybindings
+
+To make it all less complicated, I have decided to have any conflicts between
+VIM and IDE keybindings be defined to use VIM keybindings. Even if this means
+redefining standard VIM mappings in the `ideavimrc` file (`<C-C>` etc).
+
+The hope is that we can just use the standard default Intellij Keymap in all IDE
+producs (Rider, Goland etc) and platforms (Win, Linux, Darwin). This is partly
+because it doesn't seem like sync settings work cross platform and product in
+the IDEs.
