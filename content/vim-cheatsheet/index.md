@@ -6,21 +6,48 @@ tags = ["vim"]
 categories = ["programming"]
 +++
 
+## Fact number 1: VIM editing is based on a language
+
 VIM is a language, and like all languages the smaller commands can be composed
-into bigger more powerfull commands. The hope is that this expresses better
-how one thinks, and in the long run more commands (obscure key sequences)
-can be memorized.
+into bigger more powerfull commands. Try to think of the commands you learn to
+type (in normal mode) as functions. Also try to think of motions and text
+objects as functions. The goal is realise that commands, motions and text
+objects are easier to memorize when they take arguments and can be composed.
+This means that fewer shortcuts have to be memorized in the long run (albeit at
+first VIM seems weird and irritating).
+
+We want to execute something a `<number>` of times, where something is a
+`<command>` that operates on some text scoped by `<modifier><movement>`. This
+last thing that denotes the target of text we operate on is called movements and
+text objects in VIM.
+
+Formally we have
 
 ```
 <number><verb><modifier><noun>
 <number><verb><modifier><subject>
 ```
 
+In VIM this is also expressed as
+
 ```
 <number><command><modifier><movement>
 ```
 
-## The second most important fact: VIM has modes
+where
+
+* `number` is repetition
+* `command` is an action (delete, change etc)
+* `modifier` will be explained below in text objects (it changes the scope of
+  the edit in a syntactic/structural way, because VIM understands different
+  objects in your text)
+* `movement` is another concept that determines the scope/range (what text) of
+  the edit (end of line, begining of line etc)
+
+Text objects and motions are the 2 central concepts to understand when using the
+power of VIM.
+
+## Fact number 2: VIM has modes
 
 Vim has multiple operating modes.
 
@@ -36,8 +63,6 @@ Keystrokes have different meanings in different operating modes.
 
 This will make it possible to use VIM as notepad
 
-### Basics of command-line mode
-
 * `:q` quit (close window)
 * `:w` save (“write”)
 * `:wq` save and quit
@@ -47,7 +72,7 @@ This will make it possible to use VIM as notepad
     * `:help :w` opens help for the :w command
     * `:help w` opens help for the w movement
 
-### Movement
+## Overview
 
 You should spend most of your time in normal mode, using movement commands to
 navigate the buffer. Movements in Vim are also called “nouns”, because they
@@ -57,8 +82,23 @@ refer to chunks of text.
 * Words: `w` (next word), `b` (beginning of word), `e` (end of word)
 * Lines: `0` (beginning of line), `^` (first non-blank character), `$`
 (end of line)
-* Screen: `H` (top of screen), `M` (middle of screen), `L` (bottom of screen)
-* Scroll: `C-u` (up), `C-d` (down)
+* Basic movement to go into insert mode:
+    * `a`: Append text following current cursor position
+    * `A`: Append text to the end of current line
+    * `i`: Insert text before the current cursor position
+    * `I`: Insert text at the beginning of the cursor line
+    * `o`: Open up a new line following the current line and add text there
+    * `O`: Open up a new line in front of the current line and add text there
+* Screen:
+    * `H` (top of screen), `M` (middle of screen), `L` (bottom of screen)
+    * `C-e` (line down), `C-?` (line up)
+    * ???
+* Cursor scrolling:
+    * `C-u` (up), `C-d` (down)
+    * `C-U` (Up half screen), `C-D` (down half screen)
+    * `C-B` (Backward screenful), `C-F` (Forward screenful)
+    * `C-b` (One page backward), `C-f` (One page forward)
+    *
 * File: `gg` (beginning of file), `G` (end of file)
 * Line numbers: `:{number}<CR>` or `{number}gg` (line {number})
 * Misc: `%` (corresponding item)
@@ -67,21 +107,97 @@ refer to chunks of text.
         `,` / `;` for navigating matches
     * Search: `/{regex}`, `n` / `N` for navigating matches
 
-### Examples of deleting
+### Examples of deleting text
 
-You can extend the examples below with numbers
+The delete command is one of the simplest commands in vim. We can use it to
+illustrate the many ways text can be scoped by motions and socalled text objects.
 
-* dl
-* dw
-* dw, de, db, dW, dE, d
-* d0, d^, d$, dd
 
 The way better examples that is the reason I am looking forward to love VIM
 even when I am learning (hating) VIM.
 
-* diw, daw
-* di", da"
-* etc...
+* `x`: Delete character under cursor
+* `X`: Delete character before cursor
+* `dw`: Delete word from cursor on
+* `diw`: Delete (inner) word.
+* `daw`: Delete (outer, a) word
+* `db`: Delete word backward
+* `dd`: Delete line
+* `d$`: Delete to end of line
+* `d^`: Delete to beginning of line
+* `di"`: Delete the (inner) content of a double quoted string
+* `da"`: Delete a double quoted string (also the pair of double quotes)
+
+## Surround: Wrap/Unwrap text object with pair of things
+
+After installing the vim-surround plugin a new text object is available, it's
+called with `s`.
+
+A bit more formally the structure is:
+
+```
+<command><surround object>[count]<surround target>[replacement]
+```
+
+The `<command>` is one of the standard Vim ones such as delete (d), change (c)
+or visual (v). The plugin also add a new command to add surrounding pair of things
+around text objects and motions. The add command is called with `y`.
+
+The `<surround object>` is called with `s` which tells Vim we're trying to operate
+on something surrounding some text.
+
+The next parameter is the `<surround target>` which is a text object, such as a
+bracket or a quote mark.
+
+The last parameter is the `<replacement>` which is required when you're changing
+(with c) or adding (with y) something. It is the new thing (quote, bracket, tag)
+that you want to wrap around the inner surround target.
+
+### Delete surrounding pair of things
+
+* `ds"`: delete pair of double-quotes (string literals)
+* `dst`: delete surrounding tags (html, xml)
+* `ds[`: delete surrounding brackets (list, array literals)
+
+### Change surrounding pair of things
+
+To change a surrounding we use `cs{pair}{another_pair}`, this deletes the supplied text-object
+and replaces it with the second argument. The surrounding text object (called
+pair) is what is replaced, not the inner contents of the text object.
+
+There are two ways to use it:
+
+* Change one surround to another: `cs<surround target><replacement>`
+* Change one surround to another, putting the new ones on separate new lines: `cS<surround target><replacement>`
+
+Some examples are
+
+* `cs"'`: change from double quoted to single quoted string literal
+* `cS'<p>`: wrap single quoted text in p tag.
+
+### Add surrounding
+
+Add a surrounding uses `ys`, the following item is the additional mark-up,
+brackets or text that will placed around the inner content on either side.
+
+There four ways to use the new add command (called with `y`):
+
+* Wrap the vim motion or text object in the second argument: `ys<motion|text-object><addition>`
+* Change the current line and wrap it with the second argument: `yss<addition>`
+* Change the specified motion, putting the new addition on new lines and
+indenting the text: `yS<motion><addition>`
+* Whole line and do the above: `ySS<addition>`
+
+Note that `ys` is like a 2-arg function, and `yss` is like a partial application
+of this function, where the target motion/textobject have been defined to be the
+hole current line (that is is `yss` is a 1-arg function).
+
+Some examples are
+
+* `ysw'`: add single quotes around a word
+* `ys$"`: add double quotes around some text at the end of a line
+* `ys3w[`: put some square brackets around 3 words
+* `yssB`: put some (clang) brackets around the current line
 
 
 ### Learn movements by using visual mode
@@ -99,36 +215,7 @@ Always try to do your editing without going in to visual mode. This will make
 live easier in the long run. For example the powerfull dot command will be
 useful if your editing is atomic (and therefore can be repeated).
 
-## Basic Movements (Nouns, aka Subjects)
-
-* h, j, k, l
-* `gg`, `G`, `{n}gg` (navigate to a line)
-* 0, ^, $ (navigate within a line)
-
-# Basic keystrokes to go to insert mode
-
-TODO: Move to top (VIM as Notepad, the basic survival mode, add save and quit)
-
-* a
-* A
-* i
-* I
-* o
-* O
-
-* c/r...todo
-
-## Language/Syntax Movements
-
-* l (letter)
-* w, e, b, W, E, B (word: whitespace vs punctuation, what is a word?)
-* s (sentence)
-* p (paragraph)
-* { }
-* ( )
-* [ ]
-
-## Basic Screen Mavigation
+## Basic Screen Navigation
 
 ### Cursor Scrolling
 
@@ -136,6 +223,7 @@ TODO: Move to top (VIM as Notepad, the basic survival mode, add save and quit)
 
 - Ctrl+U, Ctrl+D: scroll pages by half of screen
 - Ctrl+B, Ctrl+F: scroll pages by a screen
+
 ### Screen Scolling (cursor stays, viewport moves)
 
 * C-e, C-y
@@ -164,12 +252,33 @@ TODO: Move to top (VIM as Notepad, the basic survival mode, add save and quit)
 
 ### General
 
-* d (delete, cut)
-* y (yank, copy)
-* c (change)
-* > (indent)
-* < (unindent)
-* v (visual)
+* `d` (delete, cut)
+* `y` (yank, copy)
+* `c` (change)
+* `>` (indent)
+* `<` (unindent)
+* `v` (visual)
+
+### Aliases (short commands)
+
+Current line motion commands
+
+* dd = d_: d command with d motion (_ motion, because there is no d motion).
+  Underscore (_) is an undocumented motion that refers to the current line.
+* yy = y_
+* cc = c_
+
+To end-of-line motion commands
+
+* D = d$
+* Y = y$
+* C = c$
+
+* x = dl
+* X = ?
+*   = dh
+*   = cl
+*   =
 
 ### Power macro
 
@@ -179,35 +288,35 @@ TODO: Move to top (VIM as Notepad, the basic survival mode, add save and quit)
 
 TODO: link to blog post
 
-* i (inner content)
-* a (around/outer content)
+* `i` (inner content)
+* `a` (around/outer content)
 
 ### Builtin text objects
 
 These (except w) can only be used as text object movements
 
-* w (word)
-* s (sentence)
-* p (paragrap)
+* `w` (word)
+* `s` (sentence)
+* `p` (paragraph)
 
-These can be used bot with open/left and closing/right keys
+These can be used both with open/left and closing/right keys
 
-* ], b (bracket)
-* } (brace)
-* ) (paranthesis)
+* `]` (bracket)
+* `},` `B` (brace)
+* `),` `b` (paranthesis)
 
 These are literals
 
-* " (double quote)
-* ' (single quote)
-* ` (backtick)
+* `"` (double quote)
+* `'` (single quote)
+* `` ` `` (backtick)
 
 These are for markdown
 
-* > (tag element)
-* t (tag innertext)
+* `>` (tag element)
+* `t` (tag innertext)
 
-* B (block)
+* `B` (block)
 
 Note: Many more general purpose text objects can be installed via plugins
 
