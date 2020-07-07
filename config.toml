@@ -1,6 +1,6 @@
 title = "My Example Site"
 
-highlight_theme = "gruvbox-dark"
+#highlight_theme = "gruvbox-dark"
 
 # clean blog requiremenmts
 theme = "even"
