@@ -1,4 +1,3 @@
-
 +++
 title = "Theme Overview"
 date = 2018-07-19
@@ -7,8 +6,8 @@ categories = ["Real Content"]
 tags = ["placeholder posts"]
 +++
 This site provides a demo for the Even theme for the
-[Gutenberg](https://www.getgutenberg.io/) static site generator.  Even was
-designed by [Vincent Prouillet](https://vincent.is/) and was based on the
+[Zola](https://www.getzola.org/) static site generator.  Even was
+designed by [Vincent Prouillet](https://www.vincentprouillet.com) and was based on the
 Even Hugo theme by olOwOlo.  This demo site was built by
 [Daniel Sockwell](https://www.codesections.com).  Both the theme and this
 site are licensed under the
@@ -16,11 +15,11 @@ site are licensed under the
 redistribute either for commercial or non-commercial work.
 
 You can find the source code for this site [in its GitHub
-repository](https://github.com/codesections/gutenberg-theme-demo/tree/even)
+repository](https://github.com/getzola/even)
 and can find the source code for the theme in the
 [Even](https://www.github.com/Keats/even) repository.  For a
-description of this theme and links to other Gutenberg themes, please
-go to <https://www.getgutenberg.io/themes/>.
+description of this theme and links to other Zola themes, please
+go to <https://www.getzola.org/themes/>.
 
 <!-- more -->
 
