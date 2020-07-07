@@ -1,6 +1,6 @@
 ## Maxild
 
-![Build and deploy](https://github.com/maxild/maxild.github.io/workflows/Build%20and%20deploy%20on%20push/badge.svg?branch=publish)
+![Build and deploy on push](https://github.com/maxild/maxild.github.io/workflows/Build%20and%20deploy%20on%20push/badge.svg?branch=publish)
 
 This is the static web generator project for my personal website.
 
