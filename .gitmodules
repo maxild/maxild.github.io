@@ -28,3 +28,6 @@
 [submodule "themes/even"]
 	path = themes/even
 	url = https://github.com/getzola/even.git
+[submodule "themes/brutal"]
+	path = themes/brutal
+	url = https://github.com/maxild/zola-brutal-theme.git

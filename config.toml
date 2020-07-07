@@ -1,9 +1,6 @@
 title = "My Example Site"
 
-#highlight_theme = "gruvbox-dark"
-
-# clean blog requiremenmts
-theme = "even"
+theme = "brutal"
 
 taxonomies = [
     {name = "categories", rss = true, paginate_by=5},
@@ -25,6 +22,8 @@ compile_sass = true
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "inspired-github"
+#highlight_theme = "gruvbox-dark"
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
