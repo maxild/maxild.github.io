@@ -1,6 +1,9 @@
 +++
 title = "idea shortcuts"
 date = 2020-06-25
+draft = true
+[taxonomies]
+tags = ["jetbrains"]
 +++
 
 ## Navigation

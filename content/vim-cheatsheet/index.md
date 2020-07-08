@@ -3,7 +3,6 @@ title = "My VIM notes"
 date = 2020-05-27
 [taxonomies]
 tags = ["vim"]
-categories = ["programming"]
 +++
 
 ## Fact number 1: VIM editing is based on a language

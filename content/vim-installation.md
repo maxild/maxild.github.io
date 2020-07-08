@@ -1,6 +1,8 @@
 +++
 title = "Installing vim/neovim using Nixpkgs"
 date = 2020-06-25
+[taxonomies]
+tags = ["vim"]
 +++
 
 This is a simplified nix expression

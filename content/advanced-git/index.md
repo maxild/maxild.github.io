@@ -1,10 +1,8 @@
 +++
 title = "Advanced Git"
 date = 2020-01-01
-
-#[taxonomies]
-#categories = ["git"]
-#tags = ["tag1"]
+[taxonomes]
+tags = ["git"]
 +++
 
 ## Best practice recap (TL;DR)

@@ -1,10 +1,7 @@
 +++
 title = "Biography"
 date = 2020-01-01
-
-#[taxonomies]
-#categories = ["git"]
-#tags = ["tag1"]
+draft = true
 +++
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ultrices magna

@@ -1,6 +1,8 @@
 +++
 title = "Idea VIM plugin configuration"
 date = 2020-06-25
+[taxonomies]
+tags = ["jetbrains"]
 +++
 
 The plugin can be configured via an `~/.config/ideavim/ideavimrc` run config
