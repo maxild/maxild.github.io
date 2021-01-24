@@ -9,6 +9,8 @@ I want to debug .NET Core 3.x (and .NET 5) code.
 
 I was a bit confused after reading the [documentation](https://github.com/dotnet/diagnostics/blob/master/documentation/installing-sos-windows-instructions.md). I have [commented](https://github.com/dotnet/diagnostics/issues/496#issuecomment-766253226) on a github issue to figure this out.
 
+<!-- more -->
+
 When debugging at the commandline
 
 ```powershell
