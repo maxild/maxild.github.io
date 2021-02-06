@@ -22,9 +22,9 @@ env:
 
 **AppVeyor**
 ```yaml
-# AppVeyor have to install rsa key  before cloning private submodules (Lofus)
+env:
   SSH_SUBMODULES_KEY:
-    secure: DF3lCBl.......G5+p/ (NOTE: Very long!!!)
+    secure: DF3lCBl.......G5+p/ # NOTE: Very long!!!
 ```
 
 - do the following before pulling the submodules in the run configuration
@@ -131,6 +131,7 @@ This comes down to configuring our YAML pipeline (AppVeyor and/or Github Actions
     SSH_SUBMODULES_KEY: ${{ secrets.SSH_SUBMODULES_KEY }}
   run: |
     mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    # See https://linuxize.com/post/using-the-ssh-config-file/
     (cat << EOF
     Host github.com
       User git
