@@ -13,20 +13,26 @@ when getting sources for private submodules during a build.
 - create SSH keypair on your computer
 - add public part as user key on Github
 - add private key as secret in (container) repo where action is triggered (such that `$HOME/.ssh/id_rsa` can be synthesized as a preliminary build step)
+
 **Github Actions**:
 ```yaml
 env:
   SSH_SUBMODULES_KEY: ${{ secrets.SSH_SUBMODULES_KEY }}
 ```
+
 **AppVeyor**
 ```yaml
 # AppVeyor have to install rsa key  before cloning private submodules (Lofus)
   SSH_SUBMODULES_KEY:
     secure: DF3lCBl.......G5+p/ (NOTE: Very long!!!)
 ```
+
 - do the following before pulling the submodules in the run configuration
+
 ```bash
-mkdir -p "$HOME/.ssh" && echo "$SSH_SUBMODULES_KEY" > "$HOME/.ssh/id_rsa" && chmod 600 "$HOME/.ssh/id_rsa"
+mkdir -p "$HOME/.ssh" && \
+echo "$SSH_SUBMODULES_KEY" > "$HOME/.ssh/id_rsa" && \
+chmod 600 "$HOME/.ssh/id_rsa"
 ```
 
 <!-- more -->
