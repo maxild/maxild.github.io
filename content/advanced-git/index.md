@@ -1,7 +1,7 @@
 +++
 title = "Advanced Git"
 date = 2020-01-01
-[taxonomes]
+[taxonomies]
 tags = ["git"]
 +++
 
