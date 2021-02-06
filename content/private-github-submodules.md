@@ -3,7 +3,7 @@ title = "Private Github submodules"
 date = 2021-02-06
 [taxonomies]
 tags = ["git"]
-++
++++
 
 Some workflows require use of an SSH private key during build - for instance
 when getting sources for private submodules during a build.
