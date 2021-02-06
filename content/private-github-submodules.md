@@ -37,6 +37,8 @@ chmod 600 "$HOME/.ssh/id_rsa"
 
 <!-- more -->
 
+## Intro
+
 In my normal workflow I use HTTPS to access Github repos, but when adding submodules
 via HTTPS the repo has to be public. The below submodule configuration does not work
 on AppVeyor or Github Actions, because `maxild/Lofus` is accessed via HTTPS
