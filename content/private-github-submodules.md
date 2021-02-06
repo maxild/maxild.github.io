@@ -59,8 +59,8 @@ First step is to use SSH for the private submodule repo:
 ```ini
 [submodule "src/submodules/aspnetcore"]
     path = src/submodules/aspnetcore
-    url = https://github.com/maxild/aspnetcore.git
-    branch = internals-Visible-To
+    url = https://github.com/dotnet/aspnetcore.git
+    branch = master
 [submodule "src/submodules/Lofus"]
     path = src/submodules/Lofus
     url = git@github.com:maxild/Lofus.git
