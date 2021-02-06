@@ -119,14 +119,12 @@ Using the "Encrypt YAML" page generate an encrypted environment variable called 
 
 After having setup the secret/private keys on the CI cloud providers, its time to use the secrets to setup the CI pipeline/environment:
 
-### On Github (using Linux and Windows -- )
+### On Github
 
-Take the private key (longer one) and transform it into something suitable for the build environment.
-This comes down to configuring our YAML pipeline (AppVeyor and/or Github Actions) to setup SSH to use the private (secret) key
-(git uses SSH under the hood, when the URL is for SSH).
+Here we use Windows and Linux (MacOS is way too expensive, and who will use that in production?)
 
 ```
-- name: Install SSH key on Linux and Windows (via GIT bash shell)
+- name: Install SSH key on Linux/Windows (via GIT bash shell on win)
   env:
     SSH_SUBMODULES_KEY: ${{ secrets.SSH_SUBMODULES_KEY }}
   run: |
@@ -148,7 +146,9 @@ This comes down to configuring our YAML pipeline (AppVeyor and/or Github Actions
   shell: bash
 ```
 
-### On AppVeyor (using Windows)
+### On AppVeyor
+
+Here we use Windows (`image: `)
 
 ```yaml
 install:
