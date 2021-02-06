@@ -126,7 +126,7 @@ This comes down to configuring our YAML pipeline (AppVeyor and/or Github Actions
 (git uses SSH under the hood, when the URL is for SSH).
 
 ```
-- name: Install SSH key on Linux/MacOS and Windows (via bash shell included with Git for Windows)
+- name: Install SSH key on Linux and Windows (via GIT bash shell)
   env:
     SSH_SUBMODULES_KEY: ${{ secrets.SSH_SUBMODULES_KEY }}
   run: |
