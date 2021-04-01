@@ -26,7 +26,10 @@ SOS and other diagnostic tools now ship of band and work with any version of the
 
 SOS has moved to the diagnostics repo here: https://github.com/dotnet/diagnostics.git.
 
-Instructions to install SOS: https://github.com/dotnet/diagnostics#installing-sos.
+Instructions to install SOS:
+
+- https://github.com/dotnet/diagnostics/blob/main/documentation/installing-sos-windows-instructions.md (Windows)
+- https://github.com/dotnet/diagnostics/blob/main/documentation/installing-sos-instructions.md (Linux/MacOS)
 ```
 
 that says that SOS is no longer distributed with the SDK.
@@ -45,3 +48,42 @@ SOS install succeeded
 ```
 
 After that everything worked in Windbg/Cdb wrt SOS, and I could debug .NET Core 3.x (.NET 5.x.) on Windows.
+
+**NOTE**: If you are using WindDbg Preview, then the extension work out of the box.
+
+## Demo
+
+1. Start the app.
+
+2. Get the pid
+
+```powershell
+$ dotnet trace ps
+```
+
+3. Use the pid
+
+```powershell
+$  cdb dotnet run .\bin\Release\net5.0\CancelApp.dll
+```
+
+You now have a cdb session, where you need to
+
+a. load sos (load)
+b. set a breakpoint (bpmd)
+c. proceed (g)
+
+cdb commands
+
+```
+.load C:\Users\maxfire\.dotnet\sos\sos.dll
+.chain
+!name2ee * System.Threading.CancellationTokenSource
+!bpmd -md {md}
+g
+.
+.
+.
+```
+
+NOTE: WinDbg Preview has the best UX!!!!
