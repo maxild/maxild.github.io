@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP)</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+                        <div class="posts">
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;ideavim-configuration&#x2F;">Idea VIM plugin configuration</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-06-25</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;ideavim-configuration&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-installation&#x2F;">Installing vim&#x2F;neovim using Nixpkgs</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-06-25</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-installation&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-cheatsheet&#x2F;">My VIM notes</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-05-27</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-cheatsheet&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;advanced-git&#x2F;">Advanced Git</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-01-01</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        <h2 id="best-practice-recap-tl-dr">Best practice recap (TL;DR)</h2>
+<h3 id="adding-or-cloning">Adding or cloning</h3>
+<ul>
+<li>Initial add: <code>git submodule add &lt;url&gt; &lt;path&gt;</code></li>
+<li>Initial container clone: <code>git clone --recursive &lt;url&gt; [&lt;path&gt;]</code></li>
+</ul>
+<h3 id="grabbing-updates-inside-a-submodule">Grabbing updates inside a submodule</h3>
+<ul>
+<li><code>cd path/to/module</code></li>
+<li><code>git fetch</code></li>
+<li><code>git checkout -q &lt;commit-sha1&gt;</code></li>
+<li><code>cd -</code></li>
+<li><code>git commit -am &quot;Updated submodule X to: blah blah&quot;</code></li>
+</ul>
+<h3 id="grabbing-container-updates">Grabbing container updates</h3>
+<ul>
+<li><code>git pull</code></li>
+<li><code>git submodule sync --recursive</code></li>
+<li><code>git submodule update --init --recursive</code></li>
+</ul>
+<h3 id="updating-a-submodule-inside-container-code">Updating a submodule inside container code</h3>
+<ul>
+<li><code>git submodule update --remote --rebase -- path/to/module</code></li>
+<li><code>cd path/to/module</code></li>
+<li>Local work, testing, eventually staging</li>
+<li><code>git commit -am &quot;Update to central submodule: blah blah&quot;</code></li>
+<li><code>git push</code></li>
+<li><code>cd -</code></li>
+<li><code>git commit -am &quot;Updated submodule X to: blah blah&quot;</code></li>
+</ul>
+<h3 id="permanently-removing-a-submodule">Permanently removing a submodule</h3>
+<ul>
+<li><code>git submodule deinit path/to/module</code></li>
+<li><code>git rm path/to/module</code></li>
+<li><code>git commit -am &quot;Removed submodule X&quot;</code></li>
+</ul>
+
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;advanced-git&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;markdown-overview&#x2F;">Markdown Demonstration</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2018-07-18</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        <p>Testing every <code>elements</code> you can find in <a href="http://commonmark.org">CommonMark</a>.</p>
+
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;markdown-overview&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                        </div>
+                        <nav class="pagination">
+                            
+                                <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;">‹ Previous</a>
+                            
+                            
+                                <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;page&#x2F;3&#x2F;">Next ›</a>
+                            
+                        </nav>
+                    
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

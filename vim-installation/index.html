@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - Installing vim&#x2F;neovim using Nixpkgs</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-installation&#x2F;">Installing vim&#x2F;neovim using Nixpkgs</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-06-25</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>This is a simplified nix expression</p>
+<pre style="background-color:#ffffff;">
+<code class="language-nix" data-lang="nix"><span style="color:#323232;">{ pkgs </span><span style="font-weight:bold;color:#a71d5d;">? </span><span style="color:#62a35c;">import </span><span style="color:#183691;">&lt;nixpkgs&gt; </span><span style="color:#323232;">{} }:
+
+</span><span style="font-weight:bold;color:#a71d5d;">let </span><span style="color:#795da3;">config </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">{
+        </span><span style="color:#795da3;">customRC </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">builtins</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">readFile </span><span style="color:#183691;">./nvimrc</span><span style="color:#323232;">;
+        </span><span style="color:#795da3;">packages</span><span style="color:#323232;">.</span><span style="color:#795da3;">myVimPackage </span><span style="font-weight:bold;color:#a71d5d;">= with </span><span style="color:#323232;">pkgs</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">vimPlugins; {
+                </span><span style="color:#795da3;">start </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">[
+                        vim-surround
+                        haskell-vim
+                        supertab
+                        tabular
+                        vim-gitgutter
+                        syntastic
+                        vim-airline
+                        vim-airline-themes
+                        ];
+                };
+        };
+</span><span style="font-weight:bold;color:#a71d5d;">in
+</span><span style="color:#323232;">pkgs</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">neovim</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">override {
+        </span><span style="color:#795da3;">vimAlias </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">true</span><span style="color:#323232;">;
+        </span><span style="color:#795da3;">configure </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#323232;">config;
+}
+</span></code></pre>
+<p>This is similar to bjornfor and others.</p>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;vim&#x2F;">#vim</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-cheatsheet&#x2F;">‹ My VIM notes</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;ideavim-configuration&#x2F;">Idea VIM plugin configuration ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

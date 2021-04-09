@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - SynthWave &#x27;84 - VS Code theme</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;synth-wave-theme-vscode&#x2F;">SynthWave &#x27;84 - VS Code theme</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-04-10</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>I don't want to install vscode in user mode (i.e. under <code>~/</code>) on my linux machine.
+This makes getting updates easier. But I also want to use this cool glowing theme</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">ext install RobbOwen.synthwave-vscode
+</span></code></pre>
+<p>After install of the theme, if you open the command palette with <code>Ctrl + Shift + P</code> and choose &quot;Enable Neon Dreams&quot;, you will fail, because this requires root/admin privileges.</p>
+<p>Therefore re-open vscode as root (not recommended...BTW)</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo code --user-data-dir</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#183691;">&quot;~/.vscode-root&quot;
+</span></code></pre>
+<p>and install the theme and enable the glowing theme.</p>
+<p>Finally launch VS Code as root, and <code>Ctrl + Shift + P</code>,</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">ext install lehni.vscode-fix-checksums
+</span></code></pre>
+<p>and press enter.</p>
+<p>NOTE: To run as root, you must specify an alternate user data directory with the <code>--user-data-dir</code> argument.</p>
+<p>Launch VS Code as non-root, and <code>Ctrl + Shidt + P</code></p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">ext install lehni.vscode-fix-checksums
+</span></code></pre>
+<p>and press enter. This will remove <code>[Unsupported]</code> from the title bar.</p>
+<p>You now have the theme installed. Use at your own risk.</p>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;vscode&#x2F;">#vscode</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;dotnet-profiling-linux&#x2F;">‹ Profiling in .NET Core</a>
+                    
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

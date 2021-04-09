@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - Private Github submodules</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#the-quick-rundown-tl-dr" class="toc-link">The quick rundown (TL;DR)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#intro" class="toc-link">Intro</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#create-ssh-public-private-keypair" class="toc-link">Create SSH public&#x2F;private keypair</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#add-the-public-key-to-your-account-settings-on-github-user-key-not-deploy-key" class="toc-link">Add the public key to your account settings on Github (user key, not deploy key)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#add-the-private-key-as-a-secret-to-your-ci-provider-github-or-appveyor" class="toc-link">Add the private key as a secret to your CI provider (Github or AppVeyor)</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/private-github-submodules/#on-github" class="toc-link">On Github</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/private-github-submodules/#on-appveyor" class="toc-link">On AppVeyor</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#setup-the-ci-yaml-pipeline" class="toc-link">Setup the CI YAML Pipeline</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/private-github-submodules/#on-github-1" class="toc-link">On Github</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/private-github-submodules/#on-appveyor-1" class="toc-link">On AppVeyor</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#ssh-keys" class="toc-link">SSH keys</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#deploy-key" class="toc-link">Deploy Key</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/private-github-submodules/#user-key-preferred-imo" class="toc-link">User Key (preferred IMO)</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;private-github-submodules&#x2F;">Private Github submodules</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-02-06</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>Some workflows require use of an SSH private key during build - for instance
+when getting sources for private submodules during a build.</p>
+<h2 id="the-quick-rundown-tl-dr">The quick rundown (TL;DR)</h2>
+<ul>
+<li>create SSH keypair on your computer</li>
+<li>add public part as user key on Github</li>
+<li>add private key as secret in (container) repo where action is triggered (such that <code>$HOME/.ssh/id_rsa</code> can be synthesized as a preliminary build step)</li>
+</ul>
+<p><strong>Github Actions</strong>:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-yaml" data-lang="yaml"><span style="color:#63a35c;">env</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">SSH_SUBMODULES_KEY</span><span style="color:#323232;">: </span><span style="color:#183691;">${{ secrets.SSH_SUBMODULES_KEY }}
+</span></code></pre>
+<p><strong>AppVeyor</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-yaml" data-lang="yaml"><span style="color:#63a35c;">env</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">SSH_SUBMODULES_KEY</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">secure</span><span style="color:#323232;">: </span><span style="color:#183691;">DF3lCBl.......G5+p/ </span><span style="font-style:italic;color:#969896;"># NOTE: Very long!!!
+</span></code></pre>
+<ul>
+<li>do the following before pulling the submodules in the run configuration</li>
+</ul>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">mkdir -p </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">HOME</span><span style="color:#183691;">/.ssh&quot; </span><span style="font-weight:bold;color:#a71d5d;">&amp;&amp; </span><span style="color:#323232;">\
+</span><span style="color:#62a35c;">echo </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">SSH_SUBMODULES_KEY</span><span style="color:#183691;">&quot; </span><span style="font-weight:bold;color:#a71d5d;">&gt; </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">HOME</span><span style="color:#183691;">/.ssh/id_rsa&quot; </span><span style="font-weight:bold;color:#a71d5d;">&amp;&amp; </span><span style="color:#323232;">\
+chmod 600 </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">HOME</span><span style="color:#183691;">/.ssh/id_rsa&quot;
+</span></code></pre><span id="continue-reading"></span><h2 id="intro">Intro</h2>
+<p>In my normal workflow I use HTTPS to access Github repos, but when adding submodules
+via HTTPS the repo has to be public. The below submodule configuration does not work
+on AppVeyor or Github Actions, because <code>maxild/Lofus</code> is accessed via HTTPS</p>
+<pre style="background-color:#ffffff;">
+<code class="language-ini" data-lang="ini"><span style="font-weight:bold;color:#a71d5d;">[submodule &quot;src/submodules/aspnetcore&quot;]
+    </span><span style="color:#323232;">path </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> src</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">submodules</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">aspnetcore
+    url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">https://github.com/dotnet/aspnetcore.git
+    </span><span style="color:#323232;">branch </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> master
+</span><span style="font-weight:bold;color:#a71d5d;">[submodule &quot;src/submodules/Lofus&quot;]
+    </span><span style="color:#323232;">path </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> src</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">submodules</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">Lofus
+    url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">https://github.com/maxild/Lofus.git
+    </span><span style="color:#323232;">branch </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> dev
+</span></code></pre>
+<p>First step is to use SSH for the private submodule repo:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-ini" data-lang="ini"><span style="font-weight:bold;color:#a71d5d;">[submodule &quot;src/submodules/aspnetcore&quot;]
+    </span><span style="color:#323232;">path </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> src</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">submodules</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">aspnetcore
+    url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">https://github.com/dotnet/aspnetcore.git
+    </span><span style="color:#323232;">branch </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> master
+</span><span style="font-weight:bold;color:#a71d5d;">[submodule &quot;src/submodules/Lofus&quot;]
+    </span><span style="color:#323232;">path </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> src</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">submodules</span><span style="font-weight:bold;color:#a71d5d;">/</span><span style="color:#323232;">Lofus
+    url </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> git</span><span style="font-weight:bold;color:#a71d5d;">@github.</span><span style="color:#323232;">com</span><span style="font-weight:bold;color:#a71d5d;">:</span><span style="color:#0086b3;">maxild/Lofus.git
+    </span><span style="color:#323232;">branch </span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;"> dev
+</span></code></pre>
+<blockquote>
+<p>Tip: Public submodules (dotnet/aspnetcore) should use HTTPS, and private submodules (maxild/Lofus) should use SSH.</p>
+</blockquote>
+<blockquote>
+<p>Tip: Submodule repositories linked via SSH (i.e. all private submodule repositories) require an SSH key called a <code>deploy/user key</code> <a href="https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys">in GitHub</a> or <a href="https://docs.gitlab.com/ee/ssh/#per-repository-deploy-keys">in GitLab</a> or an <code>access key</code> <a href="https://confluence.atlassian.com/bitbucketserver/ssh-access-keys-for-system-use-776639781.html">in Bitbucket</a>.</p>
+</blockquote>
+<h2 id="create-ssh-public-private-keypair">Create SSH public/private keypair</h2>
+<p>First, create an ssh key and add the public key (shorter one) to your service (e.g. on your GitHub repo settings, or in ~/.ssh/authorized_keys on your server). <a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key">Run the <code>ssh-keygen</code> in your terminal</a></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">ssh-keygen -t rsa
+</span></code></pre>
+<p>I choose to create <code>submodules</code> and <code>submodules.pub</code> files (when the tool asks for a filename, and use an empty passphrase).</p>
+<h2 id="add-the-public-key-to-your-account-settings-on-github-user-key-not-deploy-key">Add the public key to your account settings on Github (<code>user key</code>, <em>not</em> <code>deploy key</code>)</h2>
+<p>In the <a href="https://github.com/settings/keys">user account settings page</a> on GitHub add a new SSH key. Use the content of the <code>submodules.pub</code> file.</p>
+<p>It is the following (public, non-secret) content</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDiAj88GBUtxT0seyYZ7xXUZmYShD/ISwjByYjmp+S7fx7sqA2ws5yLHyueYksCBS1tZOo+jyBAJxzpEGiPirLnMvZwK0BDdwJNQ2vWv6JCCSnUtb8pfckXmTGOxDbhkNZNdm7lIVVOm0W2odyVkIqGB2VF3MLnqQqAcaXtu/iOk91AimYoVV8IKu7WCrXqNqNLqOrlPBvqg9Ys82En64FryDDhmRx+B7j+qvX11TWlqQ3/Cxp9ejULn8reZQrNGlEI37gbPxfgHl0+dI27jdiUwkpjTcfSyT6DV8agrVh1m6DVMv8sglzmLqQ3OscWB5RMXuyyJ//FfIADrZqrg70qj1nHzC5ddCgXpZThIVtXpdFIoQUKtqMMmchcuQGrr6GjURZ0UMsYfvaxzTpejulOs6Qd6jiZoSl0tdUUqfQQmcFAb9rvsmJMzA2U05yuK8Cwd2CdxLiIForQha3wZYtvzYj+z2mw5XAgQypIxC/DdRmkruwpsl9eZWWWx6uqgV0= maxfire@pop-os
+</span></code></pre>
+<p>NOTE: It is much smaller than the private key.</p>
+<h2 id="add-the-private-key-as-a-secret-to-your-ci-provider-github-or-appveyor">Add the private key as a secret to your CI provider (Github or AppVeyor)</h2>
+<p>The CI build is executing git to not only get the main (container) repo, but also to recursively get all submodules. This does
+not work out of the box on either Github or AppVeyor. We have to configure the SSH infrastructure</p>
+<h3 id="on-github">On Github</h3>
+<p>Copy the private key to a secret named &quot;SSH_SUBMODULES_KEY&quot;. It is the following content that must be copied to the value of the secret</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+.
+.
+.
+.
+SIpPw+HALdX737AAAADm1heGZpcmVAcG9wLW9zAQIDBA==
+-----END OPENSSH PRIVATE KEY-----
+</span></code></pre><h3 id="on-appveyor">On AppVeyor</h3>
+<p>Using the &quot;Encrypt YAML&quot; page generate an encrypted environment variable called &quot;SSH_SUBMODULES_KEY&quot; and paste it into <code>appveyor.yml</code>. See this <a href="https://www.appveyor.com/docs/how-to/private-git-sub-modules/">guide</a> for more information.</p>
+<h2 id="setup-the-ci-yaml-pipeline">Setup the CI YAML Pipeline</h2>
+<p>After having setup the secret/private keys on the CI cloud providers, its time to use the secrets to setup the CI pipeline/environment:</p>
+<h3 id="on-github-1">On Github</h3>
+<p>Here we use Windows and Linux (MacOS is way too expensive, and who will use that in production?)</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">- name: Install SSH key on Linux/Windows (via GIT bash shell on win)
+  env:
+    SSH_SUBMODULES_KEY: ${{ secrets.SSH_SUBMODULES_KEY }}
+  run: |
+    mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh
+    # See https://linuxize.com/post/using-the-ssh-config-file/
+    (cat &lt;&lt; EOF
+    Host github.com
+      User git
+      Hostname github.com
+      PreferredAuthentications publickey
+      IdentityFile $HOME/.ssh/id_rsa
+    EOF
+    ) &gt; ~/.ssh/config
+    chmod 600 ~/.ssh/config
+    echo &quot;${SSH_SUBMODULES_KEY//_/\\n}&quot; &gt; &quot;$HOME/.ssh/id_rsa&quot;
+    chmod 600 &quot;$HOME/.ssh/id_rsa&quot;
+    SSH_KNOWN_HOSTS=&quot;$(ssh-keyscan -t rsa github.com)&quot;
+    echo &quot;$SSH_KNOWN_HOSTS&quot; &gt; &quot;$HOME/.ssh/known_hosts&quot;
+  shell: bash
+</span></code></pre><h3 id="on-appveyor-1">On AppVeyor</h3>
+<p>Here we use Windows (<code>image: </code>)</p>
+<pre style="background-color:#ffffff;">
+<code class="language-yaml" data-lang="yaml"><span style="color:#63a35c;">install</span><span style="color:#323232;">:
+  - </span><span style="color:#63a35c;">ps</span><span style="color:#323232;">: </span><span style="color:#63a35c;">$fileContent = &quot;-----BEGIN OPENSSH PRIVATE KEY-----`n&quot;
+  </span><span style="color:#323232;">- </span><span style="color:#63a35c;">ps</span><span style="color:#323232;">: </span><span style="color:#63a35c;">$fileContent += $env:SSH_SUBMODULES_KEY.Replace(&#39; &#39;, &quot;`n&quot;)
+  </span><span style="color:#323232;">- </span><span style="color:#63a35c;">ps</span><span style="color:#323232;">: </span><span style="color:#63a35c;">$fileContent += &quot;`n-----END OPENSSH PRIVATE KEY-----`n&quot;
+  </span><span style="color:#323232;">- </span><span style="color:#63a35c;">ps</span><span style="color:#323232;">: </span><span style="color:#183691;">Set-Content $env:userprofile\.ssh\id_rsa $fileContent
+</span></code></pre><h2 id="ssh-keys">SSH keys</h2>
+<p>SSH keys on Github can be either repo specific (aka deploy keys) or user specific (aka user keys):</p>
+<table><thead><tr><th>Authentication</th><th>Protocol</th><th>Dependency URL format</th><th>Gives access to</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Deploy Key</td><td>SSH</td><td><code>git@github.com:&lt;owner&gt;/&lt;repo&gt;.git</code></td><td>single repository</td><td>used by default for main repository</td></tr>
+<tr><td>User Key</td><td>SSH</td><td><code>git@github.com:&lt;owner&gt;/&lt;repo&gt;.git</code></td><td>all repos user has access to</td><td>recommended for dependencies</td></tr>
+</tbody></table>
+<h2 id="deploy-key">Deploy Key</h2>
+<p>GitHub allows you to set up SSH keys for a repository. These deploy keys have some great advantages:</p>
+<ul>
+<li>They are not bound to a user account, so they will not get invalidated by removing users from a repository.</li>
+<li>They do not give access to other, unrelated repositories.</li>
+<li>The same key can be used for dependencies not stored on GitHub.</li>
+</ul>
+<p>However, using deploy keys is complicated by the fact that GitHub does not allow you to reuse keys. So a single private key cannot access multiple GitHub repositories.</p>
+<p>You could include a different private key for every dependency in the repository, possibly encrypting them. Maintaining complex dependency graphs this way can be complex and hard to maintain. For that reason, we recommend using a user key instead.</p>
+<h2 id="user-key-preferred-imo">User Key (preferred IMO)</h2>
+<p>You can add SSH keys to user accounts on GitHub. Most users have probably already done this to be able to clone the repositories locally.</p>
+<p>This way, a single key can access multiple repositories. To limit the list of repositories and type of access, it is recommended to create a dedicated CI user account.</p>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;git&#x2F;">#git</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;using-sos-in-dotnet-core-on-windows&#x2F;">‹ Installing and Using SOS on Windows</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;dotnet-profiling-linux&#x2F;">Profiling in .NET Core ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

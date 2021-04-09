@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - Component-based CSS</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#misc" class="toc-link">Misc</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#pre-processor-stuff-tools-layer" class="toc-link">Pre-processor stuff (tools layer)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#generic-star-and-element-selectors" class="toc-link">Generic (star and element selectors)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#base-element-selectors" class="toc-link">Base (element selectors)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#utilities" class="toc-link">Utilities</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#layout" class="toc-link">Layout</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#components" class="toc-link">Components</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#patterns" class="toc-link">Patterns</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#hungarian-notation-on-classes-selectors" class="toc-link">Hungarian notation on classes&#x2F;selectors</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#alternative-naming-conventions" class="toc-link">Alternative naming conventions</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/component-based-css/#suitcss-structured-class-names-and-meaningful-hyphens-also-check-this-blog-post" class="toc-link">SUITCSS (structured class names and meaningful hyphens. Also check this blog post)</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/component-based-css/#smacss-v2-with-better-naming-convention-where-variation-and-child-element-are-differentiated-in-the-css" class="toc-link">SMACSS v2 (with better naming convention, where variation and child element are differentiated in the CSS)</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#semantic-naming" class="toc-link">Semantic naming</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/component-based-css/#srp-and-oocss" class="toc-link">SRP and OOCSS</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;component-based-css&#x2F;">Component-based CSS</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-07-08</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <p>The following text is copied from some old notes of mine. It is all about
+BEM, OOCSS, SMACSS etc.</p>
+<span id="continue-reading"></span><pre style="background-color:#ffffff;">
+<code class="language-html" data-lang="html"><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">body</span><span style="color:#323232;">&gt;
+  </span><span style="font-style:italic;color:#969896;">&lt;!-- http://outdatedbrowser.com/ could also be used --&gt;
+
+  &lt;!--[if lte IE 9]&gt;
+    &lt;p class=&quot;browserupgrade&quot;&gt;You are using an &lt;strong&gt;outdated&lt;/strong&gt; browser. Please &lt;a href=&quot;https://browsehappy.com/&quot;&gt;upgrade your browser&lt;/a&gt; to improve your experience and security.&lt;/p&gt;
+  &lt;![endif]--&gt;
+
+  &lt;!-- More content here off course --&gt;
+
+</span><span style="color:#323232;">&lt;/</span><span style="color:#63a35c;">body</span><span style="color:#323232;">&gt;
+</span></code></pre>
+<blockquote>
+<p>As of Internet Explorer 10, conditional comments are no longer supported by standards mode. Use feature detection to provide effective fallback strategies for website features that aren't supported by the browser.</p>
+</blockquote>
+<h2 id="misc">Misc</h2>
+<ul>
+<li>Naming css classes can be read about in this <a href="https://css-tricks.com/semantic-class-names/">post</a></li>
+<li>Use pseudo BEM for naming conventions. Check this <a href="https://rscss.io/">link</a>...maybe it is irrelevant.</li>
+<li>Nesting in Sass looks cleaner, but I think there’s a definite drawback in not being able to CTRL+F (grep) for something inside the codebase. Also makes diff's nicer, and PR's on github.</li>
+<li>BEM (and other component methodologies) promote a one-component-per-file approach. This makes the search easier.</li>
+<li>See <a href="https://github.com/danielguillan/bem-constructor">this</a> github project and <a href="https://codepen.io/andersschmidt/post/expressive-bem-with-sass-a-different-approach">this</a> blog post about using mixins to express BEM naming conventions.</li>
+</ul>
+<h2 id="pre-processor-stuff-tools-layer">Pre-processor stuff (tools layer)</h2>
+<ul>
+<li>setting</li>
+<li>mixins</li>
+</ul>
+<h2 id="generic-star-and-element-selectors">Generic (star and element selectors)</h2>
+<p>Thin layer</p>
+<ul>
+<li>normalize.css</li>
+<li>resets (maybe)</li>
+<li>box-sizing</li>
+</ul>
+<h2 id="base-element-selectors">Base (element selectors)</h2>
+<p>Thin layer. Maybe normalize is enough. Basics that doesn't change from project to project.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-css" data-lang="css"><span style="color:#63a35c;">table </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">width</span><span style="color:#323232;">: </span><span style="color:#0086b3;">100</span><span style="font-weight:bold;color:#a71d5d;">%</span><span style="color:#323232;">; }
+
+</span><span style="color:#63a35c;">body</span><span style="color:#323232;">, </span><span style="color:#63a35c;">form </span><span style="color:#323232;">{
+  </span><span style="color:#0086b3;">margin</span><span style="color:#323232;">: </span><span style="color:#0086b3;">0</span><span style="color:#323232;">;
+  </span><span style="color:#0086b3;">padding</span><span style="color:#323232;">: </span><span style="color:#0086b3;">0</span><span style="color:#323232;">;
+}
+</span></code></pre><h2 id="utilities">Utilities</h2>
+<ul>
+<li><code>u-utilityName</code> (trump layer in ITCSS, utility classes are quaick and dirty way of doing stuff)</li>
+</ul>
+<pre style="background-color:#ffffff;">
+<code class="language-css" data-lang="css"><span style="color:#323232;">.</span><span style="color:#795da3;">text-xl </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">font-size</span><span style="color:#323232;">: </span><span style="color:#0086b3;">140</span><span style="font-weight:bold;color:#a71d5d;">%</span><span style="color:#323232;">; }
+.</span><span style="color:#795da3;">text-l </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">font-size</span><span style="color:#323232;">: </span><span style="color:#0086b3;">120</span><span style="font-weight:bold;color:#a71d5d;">%</span><span style="color:#323232;">; }
+.</span><span style="color:#795da3;">text </span><span style="color:#323232;">{}
+.</span><span style="color:#795da3;">text-s </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">font-size</span><span style="color:#323232;">: </span><span style="color:#0086b3;">90</span><span style="font-weight:bold;color:#a71d5d;">%</span><span style="color:#323232;">; }
+.</span><span style="color:#795da3;">text-xs </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">font-size</span><span style="color:#323232;">: </span><span style="color:#0086b3;">80</span><span style="font-weight:bold;color:#a71d5d;">%</span><span style="color:#323232;">; }
+</span></code></pre>
+<p>maybe shoulf be <code>u-text-xl</code> in the markup.</p>
+<h2 id="layout">Layout</h2>
+<p>Mini layout problems with a horizontal list of buttons. below are a few different solutions (owl selector and modifiers)</p>
+<pre style="background-color:#ffffff;">
+<code class="language-css" data-lang="css"><span style="color:#63a35c;">* </span><span style="color:#323232;">+ </span><span style="color:#63a35c;">* </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">margin-left</span><span style="color:#323232;">: </span><span style="color:#0086b3;">5</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">; }
+</span><span style="font-style:italic;color:#969896;">/* this selector will keep the HTML simple, and put the burden on the more fragile combinator selector */
+</span><span style="color:#323232;">.</span><span style="color:#795da3;">button </span><span style="color:#323232;">+ .</span><span style="color:#795da3;">button </span><span style="color:#323232;">{ </span><span style="color:#0086b3;">margin-left</span><span style="color:#323232;">: </span><span style="color:#0086b3;">5</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">; }
+</span><span style="font-style:italic;color:#969896;">/* The following selectors will put the burden on the HTML, but decouple the CSS from the markup structure */
+</span><span style="color:#323232;">.</span><span style="color:#795da3;">button--first </span><span style="color:#323232;">{ }
+.</span><span style="color:#795da3;">button--last </span><span style="color:#323232;">{ }
+</span></code></pre><h2 id="components">Components</h2>
+<p>Maybe differentiate <strong>layout</strong> into own file, but do not prefix a la hungarian notaion. Layout is about containers and size and positioning (specifying <code>width</code> and <code>margin</code>). The site logo and/or main navigation: <code>.logo {}</code> and <code>.main-nav {}</code>. are somehow “reusable patterns”, but they're unique in the sense that that they only appear once on any given page and therefore (serverside) are rendered by the layout template.</p>
+<p>The big layer is components. Components expand to fill the layout. This way components and layout are different.</p>
+<p>Accord­ing to the BEM model, we should name these using the containing block name, two underscores, and then the element name.</p>
+<ul>
+<li><code>{block-name}</code> (component, module)</li>
+</ul>
+<p>Some components are variations of their &quot;base&quot; component, so they are marked up with the suffix <code>--modifier-name</code>.</p>
+<ul>
+<li><code>{block-name}--{modifier-name}</code> (component/module variation)</li>
+</ul>
+<p>The modifier class is a separate class that is declared on its own. That is <code>btn</code> and <code>btn--large</code> er two different classes that both are used on a large button in the HTML.</p>
+<p>In general you should favour the multiple-class approach over using something like <code>@extend</code> in Sass (just to make a single class possible in the HTML). Using multiple classes in your markup</p>
+<ul>
+<li>gives you a better paper-trail (documenation) in your markup, and allows you to see quickly and explicitly which classes are acting on a piece of HTML</li>
+<li>allows for greater composition in that classes are not tightly bound to other styles in your CSS.</li>
+</ul>
+<p>Whenever you are building a UI component, try and see if you can break it into two parts: one for structural/base styles (paddings, layout, etc.) and another for skin/variations (colors, typefaces etc.).</p>
+<p>An element is a descendant element of the block element that is scoped to the block. It is like a &quot;value object&quot; of the component that acts like an &quot;aggregate root&quot;. It acts like a flattened class selector that makes the styling more explicit and lowers specificity because (long) descendant combinators are avoided (that is nesting in Sass should also be avoided).</p>
+<ul>
+<li><code>{block-name}__{descendent-name}</code> (child component)</li>
+</ul>
+<p>Element names do not reflect the block’s structure. Regardless of nested levels within, it’s always just the block-name and the descendent-name (so, never .block__elem1__elem2, just block__elem).</p>
+<p>The state prefix <code>is-</code> identifies that javascript is coming in here to toggle (add or remove) the state of the UI component. Also remember to use javascript as a state machine manipulating/toggling the state classes in the CSS. Do not use javascript to write (inline) styles to DOM elements. For instance do not use jQuery <code>show()</code>/<code>hide()</code> methods.</p>
+<ul>
+<li><code>{block-name}.is-{state-of-component}</code></li>
+<li><code>{block-name}.has-{state-of-component}</code></li>
+</ul>
+<p>Use <code>is-{state-of-component}</code> to reflect changes to a component's (temp­orary) state (e.g. is-selected, is-active, is-disabled, is-hovered). <strong>Never style these classes directly; they should always be used as an adjoining class (sometimes also called class chaining).</strong> Maybe states could also be <code>btn-is-disabled</code> for more specific states (thereby flattening the selector and lowering specificity). This is how it is presented in SMACSS:</p>
+<blockquote>
+<p>States that are specific to a module (component, block) should include module name.</p>
+</blockquote>
+<p>But you may have state that is generic like <code>is-hidden</code> (or <code>visually-hidden</code> see <a href="https://gist.github.com/necolas/1024797#file-style-css-L196-L222">htmlboilerplate-normalize</a>), but maybe this is a utility class.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-scss" data-lang="scss"><span style="color:#63a35c;">button </span><span style="color:#323232;">{
+    </span><span style="font-style:italic;color:#969896;">// Forbid interaction with buttons that are disabled.
+    </span><span style="font-weight:bold;color:#a71d5d;">&amp;</span><span style="color:#323232;">[</span><span style="color:#795da3;">disabled</span><span style="color:#323232;">],
+    </span><span style="font-weight:bold;color:#a71d5d;">&amp;</span><span style="color:#323232;">.</span><span style="color:#795da3;">is-disabled </span><span style="color:#323232;">{
+        </span><span style="color:#0086b3;">opacity</span><span style="color:#323232;">: </span><span style="color:#0086b3;">0.5</span><span style="color:#323232;">;
+        </span><span style="color:#0086b3;">pointer-events</span><span style="color:#323232;">: none;
+    }
+}
+</span></code></pre>
+<p>So are all selectors single class selectors of equal specificity? Well, almost. In some cases, you might need two class names in a selector — for example, when a block modifier affects individual elements:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-css" data-lang="css"><span style="color:#323232;">.</span><span style="color:#795da3;">text-input--disabled </span><span style="color:#323232;">.</span><span style="color:#795da3;">text-input__label </span><span style="color:#323232;">{
+   </span><span style="color:#0086b3;">display</span><span style="color:#323232;">: none;
+}
+</span></code></pre>
+<p>The nice thing is that any rule that redefines this one will likely depend on another modifier (because of the unified semantics!), which means that specificity is still the same and only the rule (source) order matters.</p>
+<h2 id="patterns">Patterns</h2>
+<ul>
+<li>Layout specify width and margin</li>
+<li>Components expand to fill layout (fluid, responsive)</li>
+<li>Layout and components should <strong>not</strong> use <code>!important</code></li>
+<li>States are <code>!important</code> (you may need to throw in 'bang-important' for states, because state is just a single class name, and may need to override something with higher specificity...but put states in the trumps layer. Example <code>a::hover</code> will win over <code>.is-hovered</code> therefore we need to add <code>!important</code>)</li>
+</ul>
+<h2 id="hungarian-notation-on-classes-selectors">Hungarian notation on classes/selectors</h2>
+<ul>
+<li><code>u-</code> for utility class (those grubby little styles that have <code>!important</code> after them -- aka trumps)</li>
+<li><code>l-</code> for layout</li>
+<li><code>c-</code> for components/modules</li>
+<li><code>o-</code> for objects (OOCSS: objects are sort of like generic components/modules).</li>
+<li><code>is-</code> or <code>has-</code> for state.</li>
+<li><code>js-</code> for classes which influence the behav­iour of the element through javascript. Probably should be only used by javascript. That is never styled, so no css on these classes. Only used by javascript to bind event handlers or what not -- <code>document.getElementsByClassName</code>.</li>
+</ul>
+<p>I don't think I like hungarian notation, besides using <code>u-</code> on utility classes, because I don't like utility classes in the first place.</p>
+<h2 id="alternative-naming-conventions">Alternative naming conventions</h2>
+<p>Some alternative naming conventions are simpler than BEM, meaning less noise, less hyphens and no(!) underscores in the HTML and CSS.</p>
+<h3 id="suitcss-structured-class-names-and-meaningful-hyphens-also-check-this-blog-post">SUITCSS (structured class names and meaningful hyphens. Also check <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">this</a> blog post)</h3>
+<p>Here we use camelCase:</p>
+<ul>
+<li><code>componentName</code></li>
+<li><code>componentName--modifierName</code>: same as BEM</li>
+<li><code>componentName-descendentName</code>:  no underscores, hyphen signals child element</li>
+</ul>
+<p>Here we use PascalCase (this is the naming convention of SUITCSS):</p>
+<ul>
+<li><code>ComponentName</code> (root node)</li>
+<li><code>ComponentName--modifierName</code> (variation)</li>
+<li><code>ComponentName-descendentName</code> (child element)</li>
+</ul>
+<h3 id="smacss-v2-with-better-naming-convention-where-variation-and-child-element-are-differentiated-in-the-css">SMACSS v2 (with better naming convention, where variation and child element are differentiated in the CSS)</h3>
+<p>Here we reverse the meaning of <code>-</code> and <code>--</code>:</p>
+<ul>
+<li><code>moduleName</code> (root node)</li>
+<li><code>moduleName-modifierName</code> (variation)</li>
+<li><code>moduleName--descendentName</code> (child element)</li>
+</ul>
+<blockquote>
+<p>There is very little difference between BEM and SMACSS. In SMACSS, it talks of modules, sub-modules, and sub-components. These map directly to blocks, modifiers, and elements. (Jonathan Snook)</p>
+</blockquote>
+<h2 id="semantic-naming">Semantic naming</h2>
+<blockquote>
+<p>Keep using agnostic, abstract, OOCSS classes in your markup, but add any desired meaning to your HTML via a <code>data-ui-component</code> attribute, e.g.: <code>&lt;ul class=&quot;ui-list&quot; data-ui-component=&quot;users-list&quot;&gt;</code>. For more information see this <a href="https://csswizardry.com/2014/03/naming-ui-components-in-oocss/">article</a>, and also read this great <a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/">article</a> by Nicolas Gallagher.</p>
+</blockquote>
+<h2 id="srp-and-oocss">SRP and OOCSS</h2>
+<p>If subsets of a style rule can be split out into more manageable and reusable abstractions use single responsibility principle (SRP). Any time you are coding a potentially repeatable design pattern then try and refactor it out into smaller reusable (object, utility, helper) classes .</p>
+<p>It’s important not to take this too far; classes should be abstracted but ideally not presentational. Classes like <code>.round-corners</code> for the sake of SRP are really not all that advisable. Instead use <code>@mixin</code> to combat DRY.</p>
+<p>HTML:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-html" data-lang="html"><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">div </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;box content&quot;</span><span style="color:#323232;">&gt;
+    &lt;</span><span style="color:#63a35c;">form</span><span style="color:#323232;">&gt;
+        &lt;</span><span style="color:#63a35c;">p </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;box is-error&quot;</span><span style="color:#323232;">&gt;Please provide your name.&lt;/</span><span style="color:#63a35c;">p</span><span style="color:#323232;">&gt;
+        &lt;</span><span style="color:#63a35c;">label </span><span style="color:#795da3;">for</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;name&quot; </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;is-error&quot;</span><span style="color:#323232;">&gt;Name:&lt;/</span><span style="color:#63a35c;">label</span><span style="color:#323232;">&gt;
+      &lt;</span><span style="color:#63a35c;">input </span><span style="color:#795da3;">name</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;name&quot;</span><span style="color:#323232;">&gt;&lt;/</span><span style="color:#63a35c;">input</span><span style="color:#323232;">&gt;
+    &lt;/</span><span style="color:#63a35c;">form</span><span style="color:#323232;">&gt;
+&lt;/</span><span style="color:#63a35c;">div</span><span style="color:#323232;">&gt;
+</span></code></pre>
+<p>CSS:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-css" data-lang="css"><span style="color:#323232;">.</span><span style="color:#795da3;">content </span><span style="color:#323232;">{
+    </span><span style="color:#0086b3;">width</span><span style="color:#323232;">: </span><span style="color:#0086b3;">640</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">;
+    </span><span style="color:#0086b3;">float</span><span style="color:#323232;">: left;
+    </span><span style="color:#0086b3;">margin-right</span><span style="color:#323232;">: </span><span style="color:#0086b3;">20</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">;
+}
+
+.</span><span style="color:#795da3;">box </span><span style="color:#323232;">{
+    </span><span style="color:#0086b3;">display</span><span style="color:#323232;">: block;
+    </span><span style="color:#0086b3;">padding</span><span style="color:#323232;">: </span><span style="color:#0086b3;">20</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">;
+    </span><span style="color:#0086b3;">margin-bottom</span><span style="color:#323232;">: </span><span style="color:#0086b3;">20</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">;
+}
+
+.</span><span style="color:#795da3;">is-error </span><span style="color:#323232;">{
+    </span><span style="color:#0086b3;">background-color</span><span style="color:#323232;">: </span><span style="color:#ed6a43;">#fce0e2</span><span style="color:#323232;">;
+    </span><span style="color:#0086b3;">color</span><span style="color:#323232;">: </span><span style="color:#ed6a43;">#c00</span><span style="color:#323232;">;
+}
+
+.</span><span style="color:#795da3;">is-error</span><span style="color:#323232;">.</span><span style="color:#795da3;">box </span><span style="color:#323232;">{
+    </span><span style="color:#0086b3;">border</span><span style="color:#323232;">: </span><span style="color:#0086b3;">2</span><span style="font-weight:bold;color:#a71d5d;">px </span><span style="color:#323232;">solid </span><span style="color:#ed6a43;">#c00</span><span style="color:#323232;">;
+    </span><span style="color:#0086b3;">border-radius</span><span style="color:#323232;">: </span><span style="color:#0086b3;">8</span><span style="font-weight:bold;color:#a71d5d;">px</span><span style="color:#323232;">;
+}
+</span></code></pre>
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;styling&#x2F;">#styling</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;ideavim-configuration&#x2F;">‹ Idea VIM plugin configuration</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;using-sos-in-dotnet-core-on-windows&#x2F;">Installing and Using SOS on Windows ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

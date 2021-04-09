@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP)</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+                        <div class="posts">
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;synth-wave-theme-vscode&#x2F;">SynthWave &#x27;84 - VS Code theme</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-04-10</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;synth-wave-theme-vscode&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;dotnet-profiling-linux&#x2F;">Profiling in .NET Core</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-04-09</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;dotnet-profiling-linux&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;private-github-submodules&#x2F;">Private Github submodules</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-02-06</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        <p>Some workflows require use of an SSH private key during build - for instance
+when getting sources for private submodules during a build.</p>
+<h2 id="the-quick-rundown-tl-dr">The quick rundown (TL;DR)</h2>
+<ul>
+<li>create SSH keypair on your computer</li>
+<li>add public part as user key on Github</li>
+<li>add private key as secret in (container) repo where action is triggered (such that <code>$HOME/.ssh/id_rsa</code> can be synthesized as a preliminary build step)</li>
+</ul>
+<p><strong>Github Actions</strong>:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-yaml" data-lang="yaml"><span style="color:#63a35c;">env</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">SSH_SUBMODULES_KEY</span><span style="color:#323232;">: </span><span style="color:#183691;">${{ secrets.SSH_SUBMODULES_KEY }}
+</span></code></pre>
+<p><strong>AppVeyor</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-yaml" data-lang="yaml"><span style="color:#63a35c;">env</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">SSH_SUBMODULES_KEY</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">secure</span><span style="color:#323232;">: </span><span style="color:#183691;">DF3lCBl.......G5+p/ </span><span style="font-style:italic;color:#969896;"># NOTE: Very long!!!
+</span></code></pre>
+<ul>
+<li>do the following before pulling the submodules in the run configuration</li>
+</ul>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">mkdir -p </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">HOME</span><span style="color:#183691;">/.ssh&quot; </span><span style="font-weight:bold;color:#a71d5d;">&amp;&amp; </span><span style="color:#323232;">\
+</span><span style="color:#62a35c;">echo </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">SSH_SUBMODULES_KEY</span><span style="color:#183691;">&quot; </span><span style="font-weight:bold;color:#a71d5d;">&gt; </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">HOME</span><span style="color:#183691;">/.ssh/id_rsa&quot; </span><span style="font-weight:bold;color:#a71d5d;">&amp;&amp; </span><span style="color:#323232;">\
+chmod 600 </span><span style="color:#183691;">&quot;$</span><span style="color:#323232;">HOME</span><span style="color:#183691;">/.ssh/id_rsa&quot;
+</span></code></pre>
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;private-github-submodules&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;using-sos-in-dotnet-core-on-windows&#x2F;">Installing and Using SOS on Windows</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-01-24</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        <p>I want to debug .NET Core 3.x (and .NET 5) code.</p>
+<p>I was a bit confused after reading the <a href="https://github.com/dotnet/diagnostics/blob/master/documentation/installing-sos-windows-instructions.md">documentation</a>. I have <a href="https://github.com/dotnet/diagnostics/issues/496#issuecomment-766253226">commented</a> on a github issue to figure this out.</p>
+
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;using-sos-in-dotnet-core-on-windows&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                                <article class="post">
+                                    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;component-based-css&#x2F;">Component-based CSS</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-07-08</span>
+            
+        </div>
+    </header>
+
+                                    <div class="post__summary">
+                                        <p>The following text is copied from some old notes of mine. It is all about
+BEM, OOCSS, SMACSS etc.</p>
+
+                                    </div>
+                                    <div class="read-more">
+                                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;component-based-css&#x2F;">Read more...</a>
+                                    </div>
+                                </article>
+                            
+                        </div>
+                        <nav class="pagination">
+                            
+                            
+                                <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;page&#x2F;2&#x2F;">Next ›</a>
+                            
+                        </nav>
+                    
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - My VIM notes</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#fact-number-1-vim-editing-is-based-on-a-language" class="toc-link">Fact number 1: VIM editing is based on a language</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#fact-number-2-vim-has-modes" class="toc-link">Fact number 2: VIM has modes</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#vim-survival-guide" class="toc-link">VIM survival guide</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#overview" class="toc-link">Overview</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#examples-of-deleting-text" class="toc-link">Examples of deleting text</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#surround-wrap-unwrap-text-object-with-pair-of-things" class="toc-link">Surround: Wrap&#x2F;Unwrap text object with pair of things</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#delete-surrounding-pair-of-things" class="toc-link">Delete surrounding pair of things</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#change-surrounding-pair-of-things" class="toc-link">Change surrounding pair of things</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#add-surrounding" class="toc-link">Add surrounding</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#learn-movements-by-using-visual-mode" class="toc-link">Learn movements by using visual mode</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#don-t-use-visual-mode-for-anything-else-than-learning" class="toc-link">Don&#x27;t use visual mode for anything else than learning</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#basic-screen-navigation" class="toc-link">Basic Screen Navigation</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#cursor-scrolling" class="toc-link">Cursor Scrolling</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#screen-scolling-cursor-stays-viewport-moves" class="toc-link">Screen Scolling (cursor stays, viewport moves)</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#" class="toc-link">????</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#screen-navigation-cursor-moves-viewport-stays" class="toc-link">Screen navigation (cursor moves, viewport stays)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#commands-verbs" class="toc-link">Commands (Verbs)</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#undo" class="toc-link">Undo</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#single-char" class="toc-link">Single char</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#general" class="toc-link">General</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#aliases-short-commands" class="toc-link">Aliases (short commands)</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#power-macro" class="toc-link">Power macro</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#text-objects-modfiers-movements-on-steroids" class="toc-link">Text Objects (modfiers): Movements on steroids!</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#builtin-text-objects" class="toc-link">Builtin text objects</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#hole-line-command-shortcuts" class="toc-link">Hole Line command shortcuts</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#to-eol-command-shortcuts" class="toc-link">To EOL command shortcuts</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#search-movements" class="toc-link">Search Movements</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/vim-cheatsheet/#examples" class="toc-link">Examples</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#substitutions-sed-like-commands" class="toc-link">Substitutions (sed like commands)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#tutorial" class="toc-link">tutorial</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#getting-help" class="toc-link">Getting help</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#copy-paste-registers" class="toc-link">Copy&#x2F;Paste: registers</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/vim-cheatsheet/#resources" class="toc-link">Resources</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-cheatsheet&#x2F;">My VIM notes</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-05-27</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <h2 id="fact-number-1-vim-editing-is-based-on-a-language">Fact number 1: VIM editing is based on a language</h2>
+<p>VIM is a language, and like all languages the smaller commands can be composed
+into bigger more powerfull commands. Try to think of the commands you learn to
+type (in normal mode) as functions. Also try to think of motions and text
+objects as functions. The goal is realise that commands, motions and text
+objects are easier to memorize when they take arguments and can be composed.
+This means that fewer shortcuts have to be memorized in the long run (albeit at
+first VIM seems weird and irritating).</p>
+<p>We want to execute something a <code>&lt;number&gt;</code> of times, where something is a
+<code>&lt;command&gt;</code> that operates on some text scoped by <code>&lt;modifier&gt;&lt;movement&gt;</code>. This
+last thing that denotes the target of text we operate on is called movements and
+text objects in VIM.</p>
+<p>Formally we have</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">&lt;number&gt;&lt;verb&gt;&lt;modifier&gt;&lt;noun&gt;
+&lt;number&gt;&lt;verb&gt;&lt;modifier&gt;&lt;subject&gt;
+</span></code></pre>
+<p>In VIM this is also expressed as</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">&lt;number&gt;&lt;command&gt;&lt;modifier&gt;&lt;movement&gt;
+</span></code></pre>
+<p>where</p>
+<ul>
+<li><code>number</code> is repetition</li>
+<li><code>command</code> is an action (delete, change etc)</li>
+<li><code>modifier</code> will be explained below in text objects (it changes the scope of
+the edit in a syntactic/structural way, because VIM understands different
+objects in your text)</li>
+<li><code>movement</code> is another concept that determines the scope/range (what text) of
+the edit (end of line, begining of line etc)</li>
+</ul>
+<p>Text objects and motions are the 2 central concepts to understand when using the
+power of VIM.</p>
+<h2 id="fact-number-2-vim-has-modes">Fact number 2: VIM has modes</h2>
+<p>Vim has multiple operating modes.</p>
+<ul>
+<li>Normal: for moving around a file and making edits</li>
+<li>Insert: for inserting text</li>
+<li>Replace: for replacing text</li>
+<li>Visual (plain, line, or block) mode: for selecting blocks of text</li>
+<li>Command-line: for running a command</li>
+</ul>
+<p>Keystrokes have different meanings in different operating modes.</p>
+<h2 id="vim-survival-guide">VIM survival guide</h2>
+<p>This will make it possible to use VIM as notepad</p>
+<ul>
+<li><code>:q</code> quit (close window)</li>
+<li><code>:w</code> save (“write”)</li>
+<li><code>:wq</code> save and quit</li>
+<li><code>:e {name of file}</code> open file for editing</li>
+<li><code>:ls</code> show open buffers</li>
+<li><code>:help {topic}</code> open help
+<ul>
+<li><code>:help :w</code> opens help for the :w command</li>
+<li><code>:help w</code> opens help for the w movement</li>
+</ul>
+</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p>You should spend most of your time in normal mode, using movement commands to
+navigate the buffer. Movements in Vim are also called “nouns”, because they
+refer to chunks of text.</p>
+<ul>
+<li>Basic movement: <code>hjkl</code> (left, down, up, right)</li>
+<li>Words: <code>w</code> (next word), <code>b</code> (beginning of word), <code>e</code> (end of word)</li>
+<li>Lines: <code>0</code> (beginning of line), <code>^</code> (first non-blank character), <code>$</code>
+(end of line)</li>
+<li>Basic movement to go into insert mode:
+<ul>
+<li><code>a</code>: Append text following current cursor position</li>
+<li><code>A</code>: Append text to the end of current line</li>
+<li><code>i</code>: Insert text before the current cursor position</li>
+<li><code>I</code>: Insert text at the beginning of the cursor line</li>
+<li><code>o</code>: Open up a new line following the current line and add text there</li>
+<li><code>O</code>: Open up a new line in front of the current line and add text there</li>
+</ul>
+</li>
+<li>Screen:
+<ul>
+<li><code>H</code> (top of screen), <code>M</code> (middle of screen), <code>L</code> (bottom of screen)</li>
+<li><code>C-e</code> (line down), <code>C-?</code> (line up)</li>
+<li>???</li>
+</ul>
+</li>
+<li>Cursor scrolling:
+<ul>
+<li><code>C-u</code> (up), <code>C-d</code> (down)</li>
+<li><code>C-U</code> (Up half screen), <code>C-D</code> (down half screen)</li>
+<li><code>C-B</code> (Backward screenful), <code>C-F</code> (Forward screenful)</li>
+<li><code>C-b</code> (One page backward), <code>C-f</code> (One page forward)</li>
+<li></li>
+</ul>
+</li>
+<li>File: <code>gg</code> (beginning of file), <code>G</code> (end of file)</li>
+<li>Line numbers: <code>:{number}&lt;CR&gt;</code> or <code>{number}gg</code> (line {number})</li>
+<li>Misc: <code>%</code> (corresponding item)</li>
+<li>Find: <code>f{character}</code>, <code>t{character}</code>, <code>F{character}</code>, <code>T{character}</code>
+<ul>
+<li>find/to forward/backward {character} on the current line
+<code>,</code> / <code>;</code> for navigating matches</li>
+<li>Search: <code>/{regex}</code>, <code>n</code> / <code>N</code> for navigating matches</li>
+</ul>
+</li>
+</ul>
+<h3 id="examples-of-deleting-text">Examples of deleting text</h3>
+<p>The delete command is one of the simplest commands in vim. We can use it to
+illustrate the many ways text can be scoped by motions and socalled text objects.</p>
+<p>The way better examples that is the reason I am looking forward to love VIM
+even when I am learning (hating) VIM.</p>
+<ul>
+<li><code>x</code>: Delete character under cursor</li>
+<li><code>X</code>: Delete character before cursor</li>
+<li><code>dw</code>: Delete word from cursor on</li>
+<li><code>diw</code>: Delete (inner) word.</li>
+<li><code>daw</code>: Delete (outer, a) word</li>
+<li><code>db</code>: Delete word backward</li>
+<li><code>dd</code>: Delete line</li>
+<li><code>d$</code>: Delete to end of line</li>
+<li><code>d^</code>: Delete to beginning of line</li>
+<li><code>di&quot;</code>: Delete the (inner) content of a double quoted string</li>
+<li><code>da&quot;</code>: Delete a double quoted string (also the pair of double quotes)</li>
+</ul>
+<h2 id="surround-wrap-unwrap-text-object-with-pair-of-things">Surround: Wrap/Unwrap text object with pair of things</h2>
+<p>After installing the vim-surround plugin a new text object is available, it's
+called with <code>s</code>.</p>
+<p>A bit more formally the structure is:</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">&lt;command&gt;&lt;surround object&gt;[count]&lt;surround target&gt;[replacement]
+</span></code></pre>
+<p>The <code>&lt;command&gt;</code> is one of the standard Vim ones such as delete (d), change (c)
+or visual (v). The plugin also add a new command to add surrounding pair of things
+around text objects and motions. The add command is called with <code>y</code>.</p>
+<p>The <code>&lt;surround object&gt;</code> is called with <code>s</code> which tells Vim we're trying to operate
+on something surrounding some text.</p>
+<p>The next parameter is the <code>&lt;surround target&gt;</code> which is a text object, such as a
+bracket or a quote mark.</p>
+<p>The last parameter is the <code>&lt;replacement&gt;</code> which is required when you're changing
+(with c) or adding (with y) something. It is the new thing (quote, bracket, tag)
+that you want to wrap around the inner surround target.</p>
+<h3 id="delete-surrounding-pair-of-things">Delete surrounding pair of things</h3>
+<ul>
+<li><code>ds&quot;</code>: delete pair of double-quotes (string literals)</li>
+<li><code>dst</code>: delete surrounding tags (html, xml)</li>
+<li><code>ds[</code>: delete surrounding brackets (list, array literals)</li>
+</ul>
+<h3 id="change-surrounding-pair-of-things">Change surrounding pair of things</h3>
+<p>To change a surrounding we use <code>cs{pair}{another_pair}</code>, this deletes the supplied text-object
+and replaces it with the second argument. The surrounding text object (called
+pair) is what is replaced, not the inner contents of the text object.</p>
+<p>There are two ways to use it:</p>
+<ul>
+<li>Change one surround to another: <code>cs&lt;surround target&gt;&lt;replacement&gt;</code></li>
+<li>Change one surround to another, putting the new ones on separate new lines: <code>cS&lt;surround target&gt;&lt;replacement&gt;</code></li>
+</ul>
+<p>Some examples are</p>
+<ul>
+<li><code>cs&quot;'</code>: change from double quoted to single quoted string literal</li>
+<li><code>cS'&lt;p&gt;</code>: wrap single quoted text in p tag.</li>
+</ul>
+<h3 id="add-surrounding">Add surrounding</h3>
+<p>Add a surrounding uses <code>ys</code>, the following item is the additional mark-up,
+brackets or text that will placed around the inner content on either side.</p>
+<p>There four ways to use the new add command (called with <code>y</code>):</p>
+<ul>
+<li>Wrap the vim motion or text object in the second argument: <code>ys&lt;motion|text-object&gt;&lt;addition&gt;</code></li>
+<li>Change the current line and wrap it with the second argument: <code>yss&lt;addition&gt;</code></li>
+<li>Change the specified motion, putting the new addition on new lines and
+indenting the text: <code>yS&lt;motion&gt;&lt;addition&gt;</code></li>
+<li>Whole line and do the above: <code>ySS&lt;addition&gt;</code></li>
+</ul>
+<p>Note that <code>ys</code> is like a 2-arg function, and <code>yss</code> is like a partial application
+of this function, where the target motion/textobject have been defined to be the
+hole current line (that is is <code>yss</code> is a 1-arg function).</p>
+<p>Some examples are</p>
+<ul>
+<li><code>ysw'</code>: add single quotes around a word</li>
+<li><code>ys$&quot;</code>: add double quotes around some text at the end of a line</li>
+<li><code>ys3w[</code>: put some square brackets around 3 words</li>
+<li><code>yssB</code>: put some (clang) brackets around the current line</li>
+</ul>
+<h3 id="learn-movements-by-using-visual-mode">Learn movements by using visual mode</h3>
+<p>That is place cursor where you want to anchor the selection, and press the
+following keys</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">v&lt;modifier&gt;&lt;movement&gt;....inspect the visual feedback.....&lt;esc&gt;
+</span></code></pre><h3 id="don-t-use-visual-mode-for-anything-else-than-learning">Don't use visual mode for anything else than learning</h3>
+<p>Always try to do your editing without going in to visual mode. This will make
+live easier in the long run. For example the powerfull dot command will be
+useful if your editing is atomic (and therefore can be repeated).</p>
+<h2 id="basic-screen-navigation">Basic Screen Navigation</h2>
+<h3 id="cursor-scrolling">Cursor Scrolling</h3>
+<ul>
+<li>C-d, C-u</li>
+</ul>
+<ul>
+<li>Ctrl+U, Ctrl+D: scroll pages by half of screen</li>
+<li>Ctrl+B, Ctrl+F: scroll pages by a screen</li>
+</ul>
+<h3 id="screen-scolling-cursor-stays-viewport-moves">Screen Scolling (cursor stays, viewport moves)</h3>
+<ul>
+<li>C-e, C-y</li>
+</ul>
+<h3 id="">????</h3>
+<ul>
+<li>C-b, C-f (by half a screen)</li>
+<li>C-u, C-d (by a screen)</li>
+</ul>
+<h2 id="screen-navigation-cursor-moves-viewport-stays">Screen navigation (cursor moves, viewport stays)</h2>
+<ul>
+<li>H, M, L (home, middle, bottom)</li>
+</ul>
+<h2 id="commands-verbs">Commands (Verbs)</h2>
+<h3 id="undo">Undo</h3>
+<ul>
+<li><code>u</code>: undo</li>
+<li><code>C-r</code>: redo</li>
+</ul>
+<h3 id="single-char">Single char</h3>
+<ul>
+<li>r (???)</li>
+<li><code>x</code> delete character (equal to <code>dl</code>)</li>
+<li><code>s</code> substitute character (equal to <code>xi</code>)</li>
+</ul>
+<h3 id="general">General</h3>
+<ul>
+<li><code>d</code> (delete, cut)</li>
+<li><code>y</code> (yank, copy)</li>
+<li><code>c</code> (change)</li>
+<li><code>&gt;</code> (indent)</li>
+<li><code>&lt;</code> (unindent)</li>
+<li><code>v</code> (visual)</li>
+</ul>
+<h3 id="aliases-short-commands">Aliases (short commands)</h3>
+<p>Current line motion commands</p>
+<ul>
+<li>dd = d_: d command with d motion (_ motion, because there is no d motion).
+Underscore (_) is an undocumented motion that refers to the current line.</li>
+<li>yy = y_</li>
+<li>cc = c_</li>
+</ul>
+<p>To end-of-line motion commands</p>
+<ul>
+<li>
+<p>D = d$</p>
+</li>
+<li>
+<p>Y = y$</p>
+</li>
+<li>
+<p>C = c$</p>
+</li>
+<li>
+<p>x = dl</p>
+</li>
+<li>
+<p>X = ?</p>
+</li>
+<li>
+<p>= dh</p>
+</li>
+<li>
+<p>= cl</p>
+</li>
+<li>
+<p>=</p>
+</li>
+</ul>
+<h3 id="power-macro">Power macro</h3>
+<ul>
+<li>dot (.)</li>
+</ul>
+<h2 id="text-objects-modfiers-movements-on-steroids">Text Objects (modfiers): Movements on steroids!</h2>
+<p>TODO: link to blog post</p>
+<ul>
+<li><code>i</code> (inner content)</li>
+<li><code>a</code> (around/outer content)</li>
+</ul>
+<h3 id="builtin-text-objects">Builtin text objects</h3>
+<p>These (except w) can only be used as text object movements</p>
+<ul>
+<li><code>w</code> (word)</li>
+<li><code>s</code> (sentence)</li>
+<li><code>p</code> (paragraph)</li>
+</ul>
+<p>These can be used both with open/left and closing/right keys</p>
+<ul>
+<li><code>]</code> (bracket)</li>
+<li><code>},</code> <code>B</code> (brace)</li>
+<li><code>),</code> <code>b</code> (paranthesis)</li>
+</ul>
+<p>These are literals</p>
+<ul>
+<li><code>&quot;</code> (double quote)</li>
+<li><code>'</code> (single quote)</li>
+<li><code>`</code> (backtick)</li>
+</ul>
+<p>These are for markdown</p>
+<ul>
+<li>
+<p><code>&gt;</code> (tag element)</p>
+</li>
+<li>
+<p><code>t</code> (tag innertext)</p>
+</li>
+<li>
+<p><code>B</code> (block)</p>
+</li>
+</ul>
+<p>Note: Many more general purpose text objects can be installed via plugins</p>
+<ul>
+<li>surround</li>
+<li>commentary</li>
+<li>replace-with-register</li>
+<li>indent</li>
+<li>entire</li>
+<li>line</li>
+</ul>
+<h2 id="hole-line-command-shortcuts">Hole Line command shortcuts</h2>
+<ul>
+<li>dd</li>
+<li>yy</li>
+<li>cc</li>
+</ul>
+<h2 id="to-eol-command-shortcuts">To EOL command shortcuts</h2>
+<ul>
+<li>D</li>
+<li>Y</li>
+<li>C</li>
+</ul>
+<h2 id="search-movements">Search Movements</h2>
+<ul>
+<li>
+<p><code>f{char}</code>:</p>
+</li>
+<li>
+<p><code>F{char}</code>:</p>
+</li>
+<li>
+<p><code>t{char}</code>:</p>
+</li>
+<li>
+<p><code>T{char}</code>:</p>
+</li>
+<li>
+<p><code>/{char}</code>:</p>
+</li>
+<li>
+<p><code>?{char}</code>:</p>
+</li>
+<li>
+<p><code>*</code></p>
+</li>
+<li>
+<p><code>#</code></p>
+</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<ul>
+<li>ct{char}</li>
+<li>c/{search}<Enter></li>
+<li>cf}</li>
+</ul>
+<h2 id="substitutions-sed-like-commands">Substitutions (sed like commands)</h2>
+<ul>
+<li><code>:s/{pattern}/{text}/</code></li>
+<li><code>:s/{pattern}/{text}/g</code></li>
+<li><code>:s/{pattern}/{text}/gc</code>
+i</li>
+</ul>
+<h2 id="tutorial">tutorial</h2>
+<p>vimtutor</p>
+<h2 id="getting-help">Getting help</h2>
+<p>:h key-strokes
+:h command</p>
+<h2 id="copy-paste-registers">Copy/Paste: registers</h2>
+<ul>
+<li>+&quot;y</li>
+<li>+&quot;p</li>
+</ul>
+<p>TODO: Explain registers</p>
+<p>&quot;<name></p>
+<p>register names:</p>
+<ul>
+<li>&quot;</li>
+<li>0,1,2,3,4,5,6,7,8,9</li>
+<li>a,b,...,z</li>
+</ul>
+<p>:reg command to show all registers
+: reg <name> to a register</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><code>vimtutor</code> is a tutorial that comes installed with Vim</li>
+<li><a href="https://vim-adventures.com/">Vim Adventures</a> is a game to learn Vim</li>
+<li><a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki">Vim Tips Wiki</a></li>
+<li><a href="https://vimways.org/2019/">Vim Advent Calendar</a> has various Vim tips</li>
+<li><a href="http://www.vimgolf.com/">Vim Golf</a> is <a href="https://en.wikipedia.org/wiki/Code_golf">code golf</a>, but where the programming language is Vim’s UI</li>
+<li><a href="https://vi.stackexchange.com/">Vi/Vim Stack Exchange</a></li>
+<li><a href="http://vimcasts.org/">Vim Screencasts</a></li>
+<li><a href="https://pragprog.com/book/dnvim2/practical-vim-second-edition">Practical Vim</a> (book)</li>
+</ul>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;vim&#x2F;">#vim</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;advanced-git&#x2F;">‹ Advanced Git</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-installation&#x2F;">Installing vim&#x2F;neovim using Nixpkgs ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

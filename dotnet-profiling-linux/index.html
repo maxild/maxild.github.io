@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - Profiling in .NET Core</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://maxild.github.io/dotnet-profiling-linux/#installation-of-prerequisites" class="toc-link">installation of prerequisites</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/dotnet-profiling-linux/#perfcollect" class="toc-link">perfcollect</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/dotnet-profiling-linux/#sampling-aka-profiling-with-perf-perfcollect" class="toc-link">Sampling (aka profiling) with perf (perfcollect)</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/dotnet-profiling-linux/#sampling-and-tracing-with-perfcollect" class="toc-link">Sampling and Tracing with perfcollect</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/dotnet-profiling-linux/#tracing-with-lttng" class="toc-link">Tracing with lttng</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;dotnet-profiling-linux&#x2F;">Profiling in .NET Core</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2021-04-09</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <h2 id="installation-of-prerequisites">installation of prerequisites</h2>
+<p>This guide is for popos 20.10 (groovy like)</p>
+<p><strong>perfcollect</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ curl -OL https://aka.ms/perfcollect
+$ chmod +x perfcollect
+$ </span><span style="font-style:italic;color:#969896;"># sudo ./perfcollect install
+</span></code></pre>
+<p>Copy the perfcollect bash script to <code>~/bin</code>.</p>
+<p>Under <code>Pop!_OS</code> the script will resolve it to Debian (and not Ubuntu), because
+the following <code>DISTRIB_ID</code> is unknown</p>
+<pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">$ cat /etc/lsb-release
+DISTRIB_ID=Pop
+DISTRIB_RELEASE=20.10
+DISTRIB_CODENAME=groovy
+DISTRIB_DESCRIPTION=&quot;Pop!_OS 20.10&quot;
+</span></code></pre>
+<p>Therfore we do <em>not</em> use <code>sudo ./perfcollect install</code>, because of this and other issues. Instead we manually install the deps below.</p>
+<p><strong>linux-headers</strong></p>
+<p>Must be downloaded to install perf for correct kernel version <code>uname -r</code></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo apt-get install linux-headers-$(uname - r)
+</span></code></pre>
+<p><strong>perf</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo apt-get install linux-tools-common
+$ sudo apt-get install linux-tools-generic
+$ sudo apt-get install linux-tools-$(uname -r)
+$ sudo apt-get install linux-cloud-tools-generic
+$ sudo apt-get install linux-cloud-tools-$(uname -r)
+</span></code></pre>
+<p>If you kernel version and linux-tool-generic version are same, you may be done,
+and <code>perf --version</code> should report a version (and no warning/error).</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ perf --version
+perf version 5.11.7
+</span></code></pre>
+<p>You could also get</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">perf --version
+WARNING: perf not found for kernel 5.8.0-7642
+
+  You may need to install the following packages for this specific kernel:
+    linux-tools-5.8.0-7642-generic
+    linux-cloud-tools-5.8.0-7642-generic
+
+  You may also want to install one of the following packages to keep up to date:
+    linux-tools-generic
+    linux-cloud-tools-generic
+</span></code></pre>
+<p><strong>NOTES</strong></p>
+<ul>
+<li><code>linux-tools|linux-tools-common|linux-tools-generic</code> always points at the tools for the most up to date
+kernel version. When running an older kernel, if you want perf without
+rebooting to the newer kernel you have to explicitly install the tools paired
+with that kernel (hence the <code>uname -r</code> shell expansion).</li>
+<li>To see the installed version of linux-tools (perf)</li>
+</ul>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ ls /usr/lib/linux-tools
+5.11.0-7612-generic/
+</span></code></pre>
+<p><strong>lttng</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#969896;"># groovy requires 12.2.x releaseline branch
+</span><span style="color:#323232;">$ sudo add-apt-repository ppa:lttng/ppa
+$ sudo apt-get update
+</span></code></pre>
+<p>The ppa will make it possible to use v12.2.5 of lttng-modules</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ apt policy lttng-modules-dkms
+lttng-modules-dkms:
+  Installed: 2.12.x+stable+git1398+202103251918~ubuntu20.10.1
+  Candidate: 2.12.x+stable+git1398+202103251918~ubuntu20.10.1
+  Version table:
+ *** 2.12.x+stable+git1398+202103251918~ubuntu20.10.1 500
+        500 http://ppa.launchpad.net/lttng/ppa/ubuntu groovy/main amd64 Packages
+        500 http://ppa.launchpad.net/lttng/ppa/ubuntu groovy/main i386 Packages
+        100 /var/lib/dpkg/status
+     2.12.2-1ubuntu1 500
+        500 http://us.archive.ubuntu.com/ubuntu groovy/universe amd64 Packages
+        500 http://us.archive.ubuntu.com/ubuntu groovy/universe i386 Packages
+</span></code></pre><pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo apt-get install lttng-tools
+$ sudo apt-get install lttng-modules-dkms
+$ sudo apt-get install liblttng-ust0
+$ sudo apt-get install liblttng-ust-dev
+</span></code></pre>
+<p><strong>NOTE</strong>: <code>liblttng-ust0</code> provides the tracer shared library (the runtime dependency of an instrumented app/library) and <code>liblttng-ust-dev</code> provide the necessary to compile applications/library with lttng-ust tracepoints.</p>
+<p><code>lttng</code> should report a version.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ lttng --version
+lttng (LTTng Trace Control) 2.12.3 - (Ta) Meilleure
+</span></code></pre><h2 id="perfcollect">perfcollect</h2>
+<p><code>percollect</code> will use <code>perf</code> to sample CPU stacks at 1000 Hertz:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ perf record -k 1 -g --pid</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;">228368 -F 1000 -e cpu-clock
+</span><span style="font-style:italic;color:#969896;"># or if no PID
+</span><span style="color:#323232;">$ perf record -k 1 -g -a -F 1000 -e cpu-clock
+</span></code></pre>
+<p>We now have installed the following prerequisites:</p>
+<ul>
+<li>
+<p><code>perf</code>: the Linux Performance Events subsystem and companion user-mode collection/viewer application. perf is part of the Linux kernel source, but is not usually installed by default.</p>
+</li>
+<li>
+<p><code>LTTng</code>: Used to capture event data emitted at runtime by CoreCLR. This data is then used to analyze the behavior of various runtime components such as the GC, JIT, and thread pool.</p>
+</li>
+</ul>
+<p>We need to enable an environment variable in order to provide symbol information.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="font-weight:bold;color:#a71d5d;">export </span><span style="color:#323232;">COMPlus_PerfMapEnabled</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#183691;">1
+</span><span style="font-weight:bold;color:#a71d5d;">export </span><span style="color:#323232;">COMPlus_EnableEventLog</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#183691;">1
+</span></code></pre>
+<p><code>COMPlus_PerfMapEnabled=1</code> tells the runtime to emit information that enables <code>perf_event</code> to resolve JIT-compiled code symbols.</p>
+<h2 id="sampling-aka-profiling-with-perf-perfcollect">Sampling (aka profiling) with perf (perfcollect)</h2>
+<p><strong>terminal 1</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ dotnet bin/release/net5.0/TraceProfilingDemo.dll
+</span></code></pre>
+<p><strong>terminal 2</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ ps -aux </span><span style="font-weight:bold;color:#a71d5d;">| </span><span style="color:#323232;">grep </span><span style="color:#183691;">&#39;TraceProfilingDemo&#39;
+</span><span style="color:#323232;">maxfire   </span><span style="font-weight:bold;color:#a71d5d;">**</span><span style="color:#323232;">186749</span><span style="font-weight:bold;color:#a71d5d;">**</span><span style="color:#323232;">  0.3  0.0 3137176 31852 pts/2   Sl+  15:37   0:00 </span><span style="font-weight:bold;color:#a71d5d;">**</span><span style="color:#323232;">dotnet bin/release/net5.0/TraceProfilingDemo.dll</span><span style="font-weight:bold;color:#a71d5d;">**
+</span><span style="color:#323232;">$ sudo perf record -g --pid 186749
+</span></code></pre>
+<p>or if not attaching (and only using one terminal)</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo perf record -g</span><span style="font-weight:bold;color:#a71d5d;"> --</span><span style="color:#323232;"> dotnet bin/release/net5.0/TraceProfilingDemo.dll
+</span></code></pre>
+<p>we ask <code>perf</code> to collect call stacks (-g).</p>
+<p>Then</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo perf report
+</span></code></pre>
+<p><strong>NOTE</strong>: <code>perf_events</code> has JIT support to solve this, which requires the .NET Runtime
+to maintain a <code>/tmp/perf-{PID}.map</code> file for symbol translation. You enables/disable
+writing <code>/tmp/perf-$pid.map</code> on Linux systems using <code>COMPlus_PerfMapEnabled</code>.</p>
+<p><strong>NOTE</strong>: The <code>perf record</code> command saves in the <code>perf.data</code> unique identifiers
+for all ELF images relevant to the measurement. In per-thread mode, this includes
+all the ELF images of the monitored processes. In cpu-wide mode, it includes all
+running processes running on the system. Those unique identifiers are generated
+by the linker if the <code>-Wl,--build-id</code> option is used. Thus, they are called build-id.
+The build-id are a helpful tool when correlating instruction addresses to ELF images.
+To extract all build-id entries used in a perf.data file, issue:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ readelf -n /usr/lib/linux-tools-5.11.0-7612/perf </span><span style="font-weight:bold;color:#a71d5d;">| </span><span style="color:#323232;">grep -e </span><span style="color:#183691;">&#39;[B|b]uild [I|i][d|D]:&#39;
+    </span><span style="color:#323232;">Build ID: fffd2b3dec83e5d91c81d73f38e0b127b0ef2a09
+$ readelf -n /usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5/libclrjit.so </span><span style="font-weight:bold;color:#a71d5d;">| </span><span style="color:#323232;">grep -e </span><span style="color:#183691;">&#39;[B|b]uild [I|i][d|D]:&#39;
+    </span><span style="color:#323232;">Build ID: d1a471bd128c619ccac914129ec3c6a19e977c04
+</span></code></pre>
+<p>An ELF build id is a unique identifier assigned by the linker to an executable.</p>
+<p><strong>sysctl</strong></p>
+<p>Read the current value:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sysctl kernel.kptr_restrict
+kernel.kptr_restrict = 1
+</span></code></pre>
+<p>Modify the value:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo sysctl -w kernel.kptr_restrict=0
+sysctl kernel.kptr_restrict=1
+</span></code></pre>
+<p>To make your modifications reboot persistent, you should edit <code>/etc/sysctl.conf</code>
+or create a file in <code>/etc/sysctl.d/50-mytest.conf</code> (edit the file as root),
+containing:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-ini" data-lang="ini"><span style="color:#323232;">kernel</span><span style="font-weight:bold;color:#a71d5d;">.</span><span style="color:#323232;">kptr_restrict</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#0086b3;">1
+</span></code></pre>
+<p>In which case you should execute this command to reload your configuration:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sysctl -p /etc/sysctl.conf
+</span></code></pre>
+<p><strong>Symbols: user code libraries</strong></p>
+<p>We can tell the .NET Runtime (JIT) to emit additional debugging info, which
+perf will then use to convert function addresses to their names. The only thing
+we need to do for to happen is to set <code>COMPlus_PerfMapEnabled</code> environmental variable
+to 1</p>
+<p><strong>terminal 1</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#969896;"># COMPlus_PerfMapEnabled tells the runtime to emit information
+# that enables perf_event to resolve JIT-compiled code symbols.
+</span><span style="color:#323232;">$ COMPlus_PerfMapEnabled=1 dotnet bin/release/net5.0/TraceProfilingDemo.dll
+</span></code></pre>
+<p><strong>Symbols: framework libraries</strong></p>
+<p>The Framework libraries (System.Private.CoreLib.dll etc) should also have debuginfo (symbols).
+The symbols are different than app-level symbols because the framework is pre-compiled
+while apps are just-in-time-compiled. For code like the framework that was precompiled
+to native code, you need a special tool called crossgen that knows how to generate the
+mapping from the native code to the name of the methods.</p>
+<p>If you place the crossgen tool in the same directory as the .NET Runtime DLLs
+(e.g. libcoreclr.so), then perfcollect can find it and add the framework symbols
+to the trace file for you.</p>
+<p>We can use a well-known trick. The crossgen tool is part of any self-contained
+published app. We can copy the crossgen tool from any self contained package.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ dotnet publish --self-contained -r linux-x64 -c release TraceProfilingDemo.csproj
+</span></code></pre>
+<p>As a side effect of creating the self-contained application the dotnet 'muxer'
+will download a nuget package called <code>runtime.linux-x64.microsoft.netcore.app</code> and
+place it in the directory <code>~/.nuget/packages/runtime.linux-x64.microsoft.netcore.app/VERSION</code>,
+where VERSION is the version number of your .NET Core runtime (e.g. 5.0.5).
+Under that folder is a tools directory and inside there is the crossgen tool you need.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ find ~/.nuget/packages -iname </span><span style="color:#183691;">&#39;crossgen&#39;
+</span><span style="color:#323232;">/home/maxfire/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/3.1.1/tools/crossgen
+/home/maxfire/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/5.0.5/tools/crossgen
+/home/maxfire/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/5.0.3/tools/crossgen
+/home/maxfire/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/5.0.0/tools/crossgen
+/home/maxfire/.nuget/packages/microsoft.netcore.app.runtime.linux-musl-x64/5.0.0/tools/crossgen
+/home/maxfire/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/5.0.0/tools/crossgen
+</span><span style="font-style:italic;color:#969896;"># copy
+</span><span style="color:#323232;">$ cp ~/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/5.0.5/tools/crossgen \
+     /usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5
+</span><span style="font-style:italic;color:#969896;"># check
+</span><span style="color:#323232;">$ find /usr/share/dotnet/ -iname </span><span style="color:#183691;">&#39;crossgen&#39;</span><span style="color:#323232;"> -type f
+/usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5/crossgen
+</span></code></pre>
+<p>Once you have done this, perfcollect will use crossgen to include framework symbols.
+The warning that perfcollect used to issue should go away. This only has to be one
+once per machine (until you update your runtime).</p>
+<p><strong>NOTE:</strong> Only <code>perf record</code> and <code>lttng create session</code> via <code>perfcollect collect</code> will
+use crossgen. If using <code>perf record</code> directly, use <code>COMPlus_ZapDisable=1</code>.</p>
+<p><strong>Alternative: Turn off use of precompiled code</strong></p>
+<p>If you don't have the abiltiy to update the .NET Runtime (to add crossgen),
+there is another approach to getting framework symbols. You can tell the runtime
+to simply not use the precompiled framework code. The code will be Just in
+time compiled and the special crossgen tool is not needed.</p>
+<p>This works, but will increase startup time for your code by something like
+a second or two. If you can tolerate that (you probably can), then this is an
+alternative.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ COMPlus_PerfMapEnabled=1 COMPlus_ZapDisable=1 dotnet bin/release/net5.0/TraceProfilingDemo.dll
+</span></code></pre>
+<p><strong>NOTE:</strong> This can also be used when debugging (sourcelinked) framework code in IDEs
+to force local variables in stack frames to have symbols.</p>
+<p><strong>Symbols: native runtime code</strong></p>
+<p>We use the <a href="https://github.com/dotnet/symstore/blob/main/src/dotnet-symbol/README.md">dotnet-symbol CLI tool</a>.
+First download all the symbol files for the shared runtime to a temporary folder</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ mkdir /tmp/symbols
+$ dotnet symbol --symbols --output /tmp/symbols /usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5/lib</span><span style="font-weight:bold;color:#a71d5d;">*</span><span style="color:#323232;">.so
+Downloading from http://msdl.microsoft.com/download/symbols/
+Writing files to /tmp/symbols
+Writing: /tmp/symbols/libSystem.IO.Compression.Native.so.dbg
+Writing: /tmp/symbols/libSystem.Native.so.dbg
+Writing: /tmp/symbols/libSystem.Net.Security.Native.so.dbg
+Writing: /tmp/symbols/libSystem.Security.Cryptography.Native.OpenSsl.so.dbg
+Writing: /tmp/symbols/libclrjit.so.dbg
+Writing: /tmp/symbols/libcoreclr.so.dbg
+Writing: /tmp/symbols/libcoreclrtraceptprovider.so.dbg
+Writing: /tmp/symbols/libdbgshim.so.dbg
+Writing: /tmp/symbols/libhostpolicy.so.dbg
+Writing: /tmp/symbols/libmscordaccore.so.dbg
+Writing: /tmp/symbols/libmscordbi.so.dbg
+</span></code></pre>
+<p>Then copy the symbols into the shared framework (aka runtime) so that native debuggers
+like <code>lldb</code> or native tracers like <code>per_event</code> and <code>lltng</code> can find them</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ find /usr/share/dotnet/ -iname </span><span style="color:#183691;">&#39;libcoreclr.so&#39;</span><span style="color:#323232;"> -type f
+/usr/share/dotnet/shared/Microsoft.NETCore.App/3.1.13/libcoreclr.so
+/usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5/libcoreclr.so
+$ sudo cp /tmp/symbols/</span><span style="font-weight:bold;color:#a71d5d;">*</span><span style="color:#323232;"> /usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5
+</span><span style="font-style:italic;color:#969896;"># Checking copy
+</span><span style="color:#323232;">$ find /usr/share/dotnet/ -iname </span><span style="color:#183691;">&#39;libcoreclr.*&#39;</span><span style="color:#323232;"> -type f
+/usr/share/dotnet/shared/Microsoft.NETCore.App/3.1.13/libcoreclr.so
+/usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5/libcoreclr.so.dbg
+/usr/share/dotnet/shared/Microsoft.NETCore.App/5.0.5/libcoreclr.so
+</span></code></pre>
+<p>TODO: Write a script to automate this for every new runtime version, and put it in <code>~/bin/dotnet-dbg-symbols</code>.
+Should probably also download and copy crossgen.</p>
+<h2 id="sampling-and-tracing-with-perfcollect">Sampling and Tracing with perfcollect</h2>
+<p><code>perfcollect</code> uses <code>perf_event</code> and <code>lttng</code> simultanously.</p>
+<p><strong>terminal 1</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#969896;"># COMPlus_PerfMapEnabled tells the runtime to emit information
+# that enables perf_event to resolve JIT-compiled code symbols.
+</span><span style="color:#323232;">$ COMPlus_PerfMapEnabled=1 dotnet bin/release/net5.0/TraceProfilingDemo.dll
+</span></code></pre>
+<p><strong>terminal 2</strong></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ sudo ~/bin/perfcollect collect mysession -nolttng -pid 207180
+</span></code></pre>
+<p>To view it</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ perfcollect view mysession.trace.zip
+</span><span style="font-style:italic;color:#969896;"># or
+</span><span style="color:#323232;">$ perfcollect view mysession.trace.zip --viewer lltng
+</span></code></pre>
+<p>Check the log</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ unzip mysession.trace.zip
+$ bat mysession.trace/perfcollect.log
+</span></code></pre>
+<p>Also check that <code>perf.data.text</code> is non-empty. This is the file that PerfView will
+open and parse, after transfering the *.trace.zip file to Windows.</p>
+<p>This is content of the unzipped *.trace.zip file created by perfcollect</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ ll
+Permissions Size User    Date Modified Name
+drwxr-xr-x     - maxfire 10 Apr 01:05  debuginfo
+.rw-------  1.2M maxfire 10 Apr 01:05  jit-259356.dump
+.rw-r--r--  1.9k maxfire 10 Apr 01:05  Microsoft.Win32.Primitives.ni.{a8cc8fd0-e844-4e1b-9a7b-1ad5ecab8ba2}.map
+.rw-r--r--  447k maxfire 10 Apr 01:05  perf-259356.map
+.rw-------  4.2M maxfire 10 Apr 01:05  perf-jit.data
+.rw-------  3.3M maxfire 10 Apr 01:05  perf.data
+.rw-r--r--   45M maxfire 10 Apr 01:05  perf.data.txt
+.rw-r--r--   15k maxfire 10 Apr 01:05  perfcollect.log
+.rw-r--r--  1.4k maxfire 10 Apr 01:05  perfinfo-259356.map
+.rw-r--r--  127k maxfire 10 Apr 01:05  System.Collections.ni.{598cee39-c64b-4542-b9ed-359eca21048c}.map
+.rw-r--r--   41k maxfire 10 Apr 01:05  System.Console.ni.{81a94ac1-409c-47a6-bcbc-765f68c9ec2b}.map
+.rw-r--r--  4.4M maxfire 10 Apr 01:05  System.Private.CoreLib.ni.{510c7690-83fe-4de5-8a2e-fdf79f2ec929}.map
+.rw-r--r--   13k maxfire 10 Apr 01:05  System.Runtime.InteropServices.ni.{caea2a6a-873b-493f-85ff-ad31bb0ee993}.map
+.rw-r--r--     0 maxfire 10 Apr 01:05  System.Runtime.ni.{1b676a8e-57d8-40e6-bce4-80d063a96828}.map
+.rw-r--r--     0 maxfire 10 Apr 01:05  System.Text.Encoding.Extensions.ni.{07860c2a-14e0-43bd-90a1-8fefaa54f9c2}.map
+.rw-r--r--   16k maxfire 10 Apr 01:05  System.Threading.ni.{a5d41e01-ef15-40da-8106-60ee513d891a}.map
+</span></code></pre><h2 id="tracing-with-lttng">Tracing with lttng</h2>
+<p>COMPlus_EnableEventLog</p>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;dotnet-diagnostics&#x2F;">#dotnet-diagnostics</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;private-github-submodules&#x2F;">‹ Private Github submodules</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;synth-wave-theme-vscode&#x2F;">SynthWave &#x27;84 - VS Code theme ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

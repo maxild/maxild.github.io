@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>M&#x27;s Scratch Buffers (WIP) - Advanced Git</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;site.css">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">M&#x27;s Scratch Buffers (WIP)</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;maxild.github.io">M&#x27;s Scratch Buffers (WIP)</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#best-practice-recap-tl-dr" class="toc-link">Best practice recap (TL;DR)</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/advanced-git/#adding-or-cloning" class="toc-link">Adding or cloning</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/advanced-git/#grabbing-updates-inside-a-submodule" class="toc-link">Grabbing updates inside a submodule</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/advanced-git/#grabbing-container-updates" class="toc-link">Grabbing container updates</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/advanced-git/#updating-a-submodule-inside-container-code" class="toc-link">Updating a submodule inside container code</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://maxild.github.io/advanced-git/#permanently-removing-a-submodule" class="toc-link">Permanently removing a submodule</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#submodules" class="toc-link">Submodules</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#cloning-a-repo-with-submodules" class="toc-link">Cloning a repo with submodules</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#updating-a-repo-with-submodules" class="toc-link">Updating a repo with submodules</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#pulling-a-repo-with-submodules" class="toc-link">Pulling a repo with submodules</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#submodule-update-better-headline-here" class="toc-link">Submodule update...better headline here?</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#removing-a-submodule" class="toc-link">Removing a submodule</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://maxild.github.io/advanced-git/#things-to-watch-out-for" class="toc-link">Things to watch out for</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <h1 class="post__title">
+            <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;advanced-git&#x2F;">Advanced Git</a>
+        </h1>
+        <div class="post__meta">
+            <span class="post__time">2020-01-01</span>
+            
+        </div>
+    </header>
+
+    <div class="post-content">
+      <h2 id="best-practice-recap-tl-dr">Best practice recap (TL;DR)</h2>
+<h3 id="adding-or-cloning">Adding or cloning</h3>
+<ul>
+<li>Initial add: <code>git submodule add &lt;url&gt; &lt;path&gt;</code></li>
+<li>Initial container clone: <code>git clone --recursive &lt;url&gt; [&lt;path&gt;]</code></li>
+</ul>
+<h3 id="grabbing-updates-inside-a-submodule">Grabbing updates inside a submodule</h3>
+<ul>
+<li><code>cd path/to/module</code></li>
+<li><code>git fetch</code></li>
+<li><code>git checkout -q &lt;commit-sha1&gt;</code></li>
+<li><code>cd -</code></li>
+<li><code>git commit -am &quot;Updated submodule X to: blah blah&quot;</code></li>
+</ul>
+<h3 id="grabbing-container-updates">Grabbing container updates</h3>
+<ul>
+<li><code>git pull</code></li>
+<li><code>git submodule sync --recursive</code></li>
+<li><code>git submodule update --init --recursive</code></li>
+</ul>
+<h3 id="updating-a-submodule-inside-container-code">Updating a submodule inside container code</h3>
+<ul>
+<li><code>git submodule update --remote --rebase -- path/to/module</code></li>
+<li><code>cd path/to/module</code></li>
+<li>Local work, testing, eventually staging</li>
+<li><code>git commit -am &quot;Update to central submodule: blah blah&quot;</code></li>
+<li><code>git push</code></li>
+<li><code>cd -</code></li>
+<li><code>git commit -am &quot;Updated submodule X to: blah blah&quot;</code></li>
+</ul>
+<h3 id="permanently-removing-a-submodule">Permanently removing a submodule</h3>
+<ul>
+<li><code>git submodule deinit path/to/module</code></li>
+<li><code>git rm path/to/module</code></li>
+<li><code>git commit -am &quot;Removed submodule X&quot;</code></li>
+</ul>
+<span id="continue-reading"></span><h2 id="submodules">Submodules</h2>
+<p>Git submodules are implemented using two moving parts:</p>
+<ul>
+<li>the .gitmodules file and</li>
+<li>a special kind of tree object (16000, the socalled 'gitlink' object).</li>
+</ul>
+<p>The container repo will get a new <code>.gitmodules</code> file containing</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ cat .</span><span style="color:#0086b3;">\.</span><span style="color:#323232;">gitmodules
+[submodule </span><span style="color:#183691;">&quot;themes/aria&quot;</span><span style="color:#323232;">]
+  path = themes/aria
+  url = https://github.com/maxild/hexo-theme-aria.git
+</span></code></pre>
+<p>The actual sha1 of the child repo that is 'added/cloned in' is stored in the
+object database of the container repo, as can be seen by doing a</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ git ls-tree master themes/aria
+
+</span><span style="font-style:italic;color:#969896;"># Git knows themes/aria is a submodule, because it is recorded in the index with a special mode &quot;160000&quot;
+</span><span style="color:#323232;">160000 commit df308920c1ecaf759a2b2b4b00b765e069f59eb4  themes/aria
+</span></code></pre>
+<p>and a <code>rev-parse</code> to find the current commit/sha1</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">$ cd themes/aria
+$ git rev-parse master
+
+df308920c1ecaf759a2b2b4b00b765e069f59eb4
+</span></code></pre>
+<p>to see that container is tracking the child repo sha1 in its own object
+database (<code>.git</code> folder). So the container is tracking the exact reference
+(sha1) to the child/submodule repo in a socalled gitlink object. You can
+think of this 'gitlink' object like a binary file. Perhaps later you will
+get merge conflicts when different developers each are trying to reference
+different commits of the child repo.</p>
+<p>If you are the maintainer of both the container repo and the sub/child repo,
+then maybe you are going to update the child repo inside the container.
+If pushing new commits to the master branch og the child repo, then the
+container repo is tracking the old commit/sha1 in its object database.
+This can be seen by doing a <code>status</code> in the container. GIT will show that
+the two commit id's are out of sync, by saying</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">modified: themes/aria (new commits)
+</span></code></pre>
+<p>This is a problem for other developers working on the container project,
+because they will not pick up the changes to the 3rd party child repo.</p>
+<p>To update the container dependency we need to do an <code>add</code> on the submodule</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git add themes/aria
+</span></code></pre>
+<p>When you now commit the message should say &quot;Updating reference/sha1 of
+themes/aria submodule&quot;.</p>
+<p>If we at any time checkout a different commit in the child/submodule,
+we need to <code>git add &lt;submodule&gt;; git commit</code> the change in the container repo.
+This could be either going forward og backward in the child repo history.</p>
+<p>BUT we have a problem: None of the work in the container (the reference) and
+the new commits in the child repo have been pushed to Github.  We need to
+push the changes in the child repo first. First after sharing the child
+commit/sha1, can we push the changed reference in the container repo.</p>
+<blockquote>
+<p>Always push submodule changes first</p>
+</blockquote>
+<p>Feature branching in submodules</p>
+<blockquote>
+<p>You can work on feature branches of the child repo <em>inside</em> the container
+repo (even if the feature branches a pushed to Github) without affecting
+other developers using the container repo.</p>
+</blockquote>
+<p>If the feature branch dependency should be propagated to other developers
+using the container repo, you can of course <code>add</code> the submodule, and commit
+changes.</p>
+<blockquote>
+<p>Submodule dependency is always a commit/sha1, never a branch.</p>
+</blockquote>
+<h2 id="cloning-a-repo-with-submodules">Cloning a repo with submodules</h2>
+<p><code>clone</code> will not clone any submodules by default. You will have to use</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git submodule init
+</span></code></pre>
+<p>to update your containers <code>.git./config</code> with</p>
+<pre style="background-color:#ffffff;">
+<code class="language-ini" data-lang="ini"><span style="font-weight:bold;color:#a71d5d;">[submodule &quot;themes/aria&quot;]
+  </span><span style="color:#323232;">url </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">https://github.com/maxild/hexo-theme-aria.git
+  </span><span style="color:#323232;">active </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">true
+</span></code></pre>
+<p>You will have to use <code>submodule update</code> to checkout files. In practice,
+when dealing with submodule-using repos, we usually group the two commands
+(init and update) in one:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git clone
+git submodule update --init
+git submodule update --init --recursive
+</span></code></pre>
+<p>A shortcut is using <code>--recursive</code> on <code>clone</code></p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git clone --recursive
+</span></code></pre>
+<p>Note that we are now on a detached head inside the submodule</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git status
+
+HEAD detached at fe64799
+</span></code></pre><h2 id="updating-a-repo-with-submodules">Updating a repo with submodules</h2>
+<p>If we want to pull down upstream changes to the child project we <code>cd</code> into
+the child/submodule folder, and</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git fetch
+git log --one-line -10
+</span></code></pre>
+<p>find the commit <code>&lt;sha1&gt;</code> we want to depend on, and</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git checkout -q </span><span style="font-weight:bold;color:#a71d5d;">&lt;</span><span style="color:#323232;">sha1</span><span style="font-weight:bold;color:#a71d5d;">&gt;
+</span></code></pre>
+<p>(The -q is only there to spare us Git blabbering about how we’re ending up
+on a detached head. Usually this would be a healthy reminder, but on this one
+we know what we’re doing.)</p>
+<p>After that we <code>cd</code> back to the container, and the following commands will
+tell us that the submodule is out of sync with the 'gitlink' object in the
+database</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git status
+git submodule status
+git diff --submodule</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#323232;">log
+</span></code></pre>
+<p>(try all of the 3 commands above)</p>
+<p>In <code>git status</code> output, we see a <code>_new commits_</code> change type, which means the
+referenced commit changed. To update our submodule reference</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git add .
+git commit -m </span><span style="color:#183691;">&quot;Updated reference to theme/aria submodule&quot;
+</span></code></pre><h2 id="pulling-a-repo-with-submodules">Pulling a repo with submodules</h2>
+<p>If pulling down upstream changes, all submodules will also be fetched.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git pull
+</span></code></pre>
+<p>This behavior became the default with Git 1.7.5, with the configuration
+setting <code>fetch.recurseSubmodules</code> now defaulting to <code>on-demand</code>: if a
+container project gets updates to referenced submodule commits, these
+submodules get fetched automatically.</p>
+<blockquote>
+<p>Git auto-fetches, but does not auto-update.</p>
+</blockquote>
+<p>This is the massive danger: if you do not explicitly update the submodule's
+working directory, your next container commit will regress the submodule.
+Therefore always:</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git submodule update
+</span></code></pre>
+<p>As long as we are trying to form generic good habits, the preferred command
+here would be a git <code>submodule update --init --recursive</code>, in order to
+auto-init any new submodule, and to recursively update these if need be.</p>
+<h2 id="submodule-update-better-headline-here">Submodule update...better headline here?</h2>
+<p>The command <code>submodule update</code> is doing a checkout in the child repo under
+the hood.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git submodule update
+git submodule update --recursive
+</span></code></pre>
+<p>When you run <code>submodule update</code>, it checks out the specific version of the
+child project, but not within a branch. This is called having a detached
+head — it means the HEAD file points directly to a commit, not to a symbolic
+reference. Updating submodules will therefore checkout referenced commit
+(not necessarily the latest commit of the child repo). You can see what commit
+is referenced in the container project by running (within the &quot;super project&quot;):</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git submodule status
+git submodule status themes/aria
+</span></code></pre>
+<blockquote>
+<p>Each time you execute a git command in the &quot;super project&quot; which could
+modify that submodule commit SHA1, you need a <code>git submodule update</code>.</p>
+</blockquote>
+<p>So you need a <code>submodule update</code> every time you pull down a submodule change
+in the container/main project.</p>
+<p>Git 1.8.2 features a new option <code>--remote</code> that will fetch the latest
+changes from upstream in each submodule, rebase them in, and check out the
+latest revision of the submodule.</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git submodule update --rebase --remote
+</span></code></pre>
+<p>This is equivalent to running git pull in each submodule, which is generally
+exactly what you want.</p>
+<h2 id="removing-a-submodule">Removing a submodule</h2>
+<p>This one is easy</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git rm themes/aria
+</span></code></pre>
+<p>In addition to stripping the submodule from the working directory, the
+command will update the <code>.gitmodules</code> file so it does not reference the
+submodule anymore. What is odd though, is that the local config retains
+submodule information. You can ensure local config cleanup</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git submodule deinit themes/aria
+git rm themes/aria
+</span></code></pre>
+<p>before commiting</p>
+<pre style="background-color:#ffffff;">
+<code class="language-bash" data-lang="bash"><span style="color:#323232;">git commit -m </span><span style="color:#183691;">&quot;Removed the themes/aria submodule&quot;
+</span><span style="color:#323232;">[master 31cb27d] Removed the themes/aria submodule
+ 2 files changed, 4 deletions(-)
+ delete mode 160000 themes/aria
+</span></code></pre>
+<p>Regardless of your approach, the submodule’s repo remains present in
+<code>.git/modules/themes/aria</code>, but you are free to kill that whenever you want
+(not that important).</p>
+<h2 id="things-to-watch-out-for">Things to watch out for</h2>
+<ol>
+<li>Updating submodules will check out the submodules at the commit they are
+currently pointing to (not necessarily the latest commit).</li>
+<li>Always create a branch when you work in a submodule directory with
+<code>checkout -b</code>. When you do the <code>submodule update</code> a second time, it will still
+revert your work, but at least you have a pointer to get back to.</li>
+<li>Switching branches with submodules in them can also be tricky. If you
+create a new branch, add a submodule there, and then switch back to a branch
+without that submodule, you still have the submodule directory as an
+untracked directory.</li>
+<li>Always publish (push) the submodule change before publishing (push) the
+change to the superproject that references it.</li>
+</ol>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;maxild.github.io&#x2F;tags&#x2F;git&#x2F;">#git</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;markdown-overview&#x2F;">‹ Markdown Demonstration</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;maxild.github.io&#x2F;vim-cheatsheet&#x2F;">My VIM notes ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;maxild.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>
